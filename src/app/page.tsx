@@ -14,11 +14,12 @@ export default function Home() {
       <button
         onClick={() => setIsSettingOpen(!isSettingOpen)}
         className="fixed top-2 right-4 text-white font-bold p-1 rounded-xl hover:bg-primary-dark active:bg-primary-dark">
-        <Cog6ToothIcon className="size-8 transition-all active:rotate-180" />
+        <Cog6ToothIcon className={`${isSettingOpen ? '-rotate-[210deg]':'rotate-0'} size-8 transition-all`} />
       </button>
 
       <div className="h-screen flex flex-col items-center min-h-screen px-4 py-2 pt-20 transition-all">
 
+        {/* 控制面板 */}
         <div className={`${isSettingOpen ? "max-h-full opacity-100" : "max-h-0 opacity-0"} 
           m-2 transition-all duration-700`}>
           <Setting />

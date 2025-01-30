@@ -28,14 +28,14 @@ export default function PriceInput({ value, onChange }: PriceInputProps) {
 
     return (
         <div className="flex w-full h-10">
-            <button tabIndex={-1} onClick={() => updatePriceByStep(false)} className='p-1'>
+            <input type="number" inputMode="decimal" value={price} onChange={updatePrice}
+                className='flex-grow'></input>
+
+            <button tabIndex={-1} onClick={() => updatePriceByStep(false)} className='p-2 bg-primary-light'>
                 <MinusIcon className='inline-block size-5'></MinusIcon>
             </button>
 
-            <input type="number" inputMode="decimal" value={price} onChange={updatePrice}
-            className='flex-grow'></input>
-
-            <button tabIndex={-1} onClick={() => updatePriceByStep(true)} className='p-1'>
+            <button tabIndex={-1} onClick={() => updatePriceByStep(true)} className='p-2'>
                 <PlusIcon className='inline-block size-5'></PlusIcon>
             </button>
         </div>

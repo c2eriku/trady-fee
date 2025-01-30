@@ -6,6 +6,7 @@
   --background: #2F2C2E;
   --foreground: #FFF5EA;
   --primary: #A27B5C;
+  --primary-light: #b19379;
   --primary-dark: #785535;
   --secondary: #00ff00;
 }
@@ -25,7 +26,7 @@ body {
 
 input {
   color: var(--background);
-  padding: 0 .5rem;
+  padding: 0 1rem;
   border-radius: 0;
   outline: none;
 }
