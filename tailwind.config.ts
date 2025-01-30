@@ -13,8 +13,16 @@ export default {
         foreground: "var(--foreground)",
         primary: {
           DEFAULT: "var(--primary)",
-          light: "var(--primary-light)",
-          dark: "var(--primary-dark)",
+          50: "#F6F0EA",
+          100: "#EDE0D4",
+          200: "#D6BFA6",
+          300: "#C0A181",
+          400: "#AD8767",
+          500: "#A27B5C", // 主色
+          600: "#8B6549",
+          700: "#6E4E39",
+          800: "#523A2A",
+          900: "#39281D",
         },
         secondary: "var(--secondary)",
       },

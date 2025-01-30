@@ -8,9 +8,6 @@ export default function Setting() {
 
     return <div className="relative mb-12 p-2 grid grid-cols-2 gap-4 border rounded bg-black bg-opacity-50 z-50">
 
-        {/* <div className="col-span-2">{JSON.stringify(setting)}</div> */}
-
-
         <div className="flex items-center">券商</div>
         <IconicSelect
             options={brokeragesIconicSelectOptions}
@@ -20,6 +17,10 @@ export default function Setting() {
                 setting.dispatch({ type: "SET_BROKERAGE", payload: updBrokerage })
             }}>
         </IconicSelect>
+
+        <div className="flex items-center">買賣價同步</div>
+        <div className="flex items-center">券商</div>
+
 
     </div>;
 }

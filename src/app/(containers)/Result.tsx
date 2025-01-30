@@ -35,15 +35,15 @@ export default function Result({ buyPrice, sellPrice, tradeType, lotAmount, lotC
 
     return (
         <>
-            <section className="flex flex-col border rounded p-2
+            <section className="flex flex-col gap-1 border rounded p-2
                 md:flex-row">
-                <div className="w-full px-2 grid grid-cols-2 grid-cols-[40%_60%]
+                <div className="w-full px-2 grid grid-cols-2 grid-cols-[40%_60%] gap-1 items-center
                 md:w-1/2">
                     <span>買進價</span>
                     <div className="flex items-center justify-end">
                         <span className="mr-2 text-right">{totalBuyPrice}</span>
                         <button className="p-px border border-primary rounded flex bg-transparent text-primary">
-                            <InformationCircleIcon className='inline-block size-4'></InformationCircleIcon>
+                            <InformationCircleIcon className='inline-block size-8'></InformationCircleIcon>
                         </button>
                     </div>
 
@@ -51,12 +51,12 @@ export default function Result({ buyPrice, sellPrice, tradeType, lotAmount, lotC
                     <div className="flex items-center justify-end">
                         <span className="mr-2 text-right">{sellProfitAfterFees}</span>
                         <button className="p-px border border-primary rounded flex bg-transparent text-primary">
-                            <InformationCircleIcon className='inline-block size-4'></InformationCircleIcon>
+                            <InformationCircleIcon className='inline-block size-8'></InformationCircleIcon>
                         </button>
                     </div>
                 </div>
 
-                <div className="px-2 grid grid-cols-2 grid-cols-[40%_60%]
+                <div className="px-2 grid grid-cols-2 grid-cols-[40%_60%] mt-1 p-1 bg-primary-600 bg-opacity-20 rounded
                  md:w-1/2">
                     <span>淨利／損</span>
                     <span className="text-right">{netProfit}</span>
