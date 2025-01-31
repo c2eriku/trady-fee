@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { IconicSelect } from "../(components)/IconicSelect";
 import { brokerageMap, brokeragesIconicSelectOptions } from "../(models)/brokeragesList";
 import { SettingContext } from "../(states)/SettingState";
+import ToggleSwitch from "../(components)/ToggleSwitch";
 
 export default function Setting() {
     const setting = useContext(SettingContext);
@@ -19,7 +20,11 @@ export default function Setting() {
         </IconicSelect>
 
         <div className="flex items-center">買賣價同步</div>
-        <div className="flex items-center">券商</div>
+        <ToggleSwitch value={setting.state.syncSellPrice}
+            onChange={(value) => {
+                console.log(value)
+                setting.dispatch({ type: "SET_SYNC_SELL_PRICE", payload: value })
+            }}></ToggleSwitch>
 
 
     </div>;

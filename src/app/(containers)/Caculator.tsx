@@ -9,7 +9,7 @@ import Result from "./Result";
 import { CaculatorState } from "../(interfaces)/CaculatorState";
 import { LotCategoryEnum } from "../(enums)/LotCategoryEnum";
 import { TradeTypeEnum } from "../(enums)/TradeTypeEnum";
-import { SettingContext } from "../(states)/SettingState";
+import { SettingContext, SettingState } from "../(states)/SettingState";
 
 const initialState: CaculatorState = {
     buyPrice: 0,
@@ -19,9 +19,21 @@ const initialState: CaculatorState = {
     lotCategory: LotCategoryEnum.Round,
 };
 
-function calculatorReducer(state: CaculatorState, action: { type: any; payload: any; }) {
+
+function calculatorReducer(state: CaculatorState, action: {
+    type: any;
+    payload: any;
+    settingState?: SettingState
+}) {
     switch (action.type) {
         case "SET_BUY_PRICE":
+            if (action.settingState?.syncSellPrice) {
+                return {
+                    ...state,
+                    buyPrice: action.payload,
+                    sellPrice: action.payload
+                };
+            }
             return { ...state, buyPrice: action.payload };
         case "SET_SELL_PRICE":
             return { ...state, sellPrice: action.payload };
@@ -39,12 +51,10 @@ function calculatorReducer(state: CaculatorState, action: { type: any; payload: 
 
 export default function Calculator() {
     const [state, dispatch] = useReducer(calculatorReducer, initialState);
-    const test = useContext(SettingContext);
-
+    const setting = useContext(SettingContext);
 
     return (
         <div className="relative">
-
 
             <section className="mb-6">
                 <Result {...state} />
@@ -53,7 +63,7 @@ export default function Calculator() {
             <label>買進價 {state.buyPrice}</label>
             <PriceInput
                 value={state.buyPrice}
-                onChange={(value) => dispatch({ type: "SET_BUY_PRICE", payload: value })}
+                onChange={(value) => dispatch({ type: "SET_BUY_PRICE", payload: value, settingState: setting.state })}
             />
 
             <label>賣出價 {state.sellPrice}</label>

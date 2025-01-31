@@ -5,10 +5,12 @@ import { brokerageMap, brokeragesIconicSelectOptions } from "../(models)/brokera
 
 export interface SettingState {
   brokerage: Brokerage;
+  syncSellPrice: boolean;
 }
 
 export const initialState: SettingState = {
   brokerage: brokerageMap.get('fubon')!,
+  syncSellPrice: true,
 };
 
 
@@ -22,10 +24,11 @@ function settingReducer(
   state: SettingState,
   action: { type: any; payload: any }
 ) {
-  console.log('settingReducer launch!')
   switch (action.type) {
     case "SET_BROKERAGE":
       return { ...state, brokerage: action.payload };
+    case "SET_SYNC_SELL_PRICE":
+      return { ...state, syncSellPrice: action.payload };
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
   }
