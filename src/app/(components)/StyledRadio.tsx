@@ -1,3 +1,6 @@
+'use client';
+
+
 export class RadioGroup {
     name: string;
     options: RadioOption[];

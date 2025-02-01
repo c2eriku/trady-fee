@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+'use client';
 
 interface ToggleSwitchProps {
     value: boolean;

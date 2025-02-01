@@ -26,6 +26,15 @@ export default function Setting() {
                 setting.dispatch({ type: "SET_SYNC_SELL_PRICE", payload: value })
             }}></ToggleSwitch>
 
+        <div className="col-span-2 flex justify-end gap-2">
+            <button
+                onClick={() => { localStorage.removeItem('preference'); }}
+                className="rounded bg-transparent text-sm underline">刪除偏好設定</button>
+            <button
+                onClick={() => { setting.setLocalstorage(setting.state) }}
+                className="rounded bg-transparent text-sm underline">儲存偏好設定並在下次使用</button>
+        </div>
+
 
     </div>;
 }
