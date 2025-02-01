@@ -57,7 +57,7 @@ export default function Result({ buyPrice, sellPrice, tradeType, lotAmount, lotC
                 </div>
 
                 <div className="px-2 grid grid-cols-2 grid-cols-[40%_60%] mt-1 p-1 bg-primary-600 bg-opacity-20 rounded
-                 md:w-1/2">
+                 md:w-1/2 md:grid-cols-1">
                     <span>淨利／損</span>
                     <span className="text-right">{netProfit}</span>
                     <span></span>

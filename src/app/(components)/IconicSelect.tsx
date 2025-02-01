@@ -51,9 +51,9 @@ export function IconicSelect({ options, defaultValue, onChange }: IconicSelectPr
     }
 
     return (
-        <div onClick={toggleDropdown} className="relative cursor-pointer z-50">
+        <div onClick={toggleDropdown} className="relative w-full cursor-pointer z-50">
 
-            <div className="flex items-center min-w-40">
+            <div className="flex items-center">
                 <IconicOption
                     label={label!}
                     iconUrl={iconUrl!}

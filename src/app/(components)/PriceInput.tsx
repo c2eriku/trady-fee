@@ -1,6 +1,6 @@
 'use client';
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/solid';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { getStockInterval } from '../(utilities)/stockInterval';
 
 interface PriceInputProps {
