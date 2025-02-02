@@ -1,3 +1,4 @@
+import { XMarkIcon } from "@heroicons/react/16/solid";
 import { TradeDirectionEnum } from "../(enums)/TradingActionEnum";
 
 
@@ -15,7 +16,10 @@ export default function DetailDialog({ isOpen, onClose, direction, brokerageFee,
         <div onClick={onClose}
             className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
 
-            <div className="min-h-40 bg-background border border-primary p-4">
+            <div className="relative min-h-40 bg-background border border-primary rounded p-4">
+                <button className="absolute top-0 right-0 rounded-bl-lg">
+                    <XMarkIcon className="size-8 hover:bg-primary-600 active:bg-primary-600"></XMarkIcon>
+                </button>
 
                 <div className="flex justify-center mb-2">
                     <h3>{direction === TradeDirectionEnum.Buy ? '買進' : '賣出'} 費用明細 </h3>

@@ -42,7 +42,8 @@ export default function Result({ buyPrice, sellPrice, tradeType, lotAmount, lotC
                     <span>買進價</span>
                     <div className="flex items-center justify-end">
                         <span className="mr-2 text-right">{totalBuyPrice}</span>
-                        <button className="p-px border border-primary rounded flex bg-transparent text-primary">
+                        <button onClick={() => showDialog(TradeDirectionEnum.Buy)}
+                            className="p-px border border-primary rounded flex bg-transparent text-primary">
                             <InformationCircleIcon className='inline-block size-8'></InformationCircleIcon>
                         </button>
                     </div>
@@ -50,7 +51,8 @@ export default function Result({ buyPrice, sellPrice, tradeType, lotAmount, lotC
                     <span>賣出價</span>
                     <div className="flex items-center justify-end">
                         <span className="mr-2 text-right">{sellProfitAfterFees}</span>
-                        <button className="p-px border border-primary rounded flex bg-transparent text-primary">
+                        <button onClick={() => showDialog(TradeDirectionEnum.Sell)}
+                            className="p-px border border-primary rounded flex bg-transparent text-primary">
                             <InformationCircleIcon className='inline-block size-8'></InformationCircleIcon>
                         </button>
                     </div>

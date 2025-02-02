@@ -1,7 +1,7 @@
-"use client";
-import { createContext, useEffect, useReducer } from "react";
+'use client';
+import { createContext, useReducer } from "react";
 import { Brokerage } from "../(interfaces)/brokerage";
-import { brokerageMap, brokeragesIconicSelectOptions } from "../(models)/brokeragesList";
+import { brokerageMap } from "../(models)/brokeragesList";
 
 
 export interface SettingState {
@@ -16,7 +16,6 @@ export const initialState: SettingState = {
 
 // 取得 localStorage 中的初始設定值
 function getInitialState(): SettingState {
-  console.log(window)
   if (typeof window !== "undefined") {
     const stored = localStorage.getItem("preference");
     if (stored) {
