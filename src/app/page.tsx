@@ -18,10 +18,9 @@ export default function Home() {
       {/* 設定按鈕 */}
       <button
         onClick={() => setIsSettingOpen(!isSettingOpen)}
-        className="fixed bottom-4 right-4 text-white font-bold p-1 rounded-xl z-50
-        hover:bg-primary-600 active:bg-primary-600">
+        className="fixed bottom-4 right-4 outline p-2 bg-[#6299d5] rounded-full z-50">
         <Cog6ToothIcon className={`${isSettingOpen ? '-rotate-[210deg]' : 'rotate-0'} 
-          size-8 transition-all`} />
+           size-8 transition-all`} />
       </button>
 
       <div className="h-screen flex flex-col gap-2 items-center min-h-screen px-4 py-2 pt-10 transition-all">
