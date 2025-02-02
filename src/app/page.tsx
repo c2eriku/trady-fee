@@ -27,6 +27,8 @@ export default function Home() {
 
         {/* 控制面板 */}
         <div className={`${isSettingOpen ? "max-h-full opacity-100" : "max-h-0 opacity-0"} 
+             px-2 pt-10 pb-2 outline outline-1 outline-primary
+             border border-primary-400 border-t-0 border-b-[1rem] rounded-b-lg w-full bg-black z-40
              w-full transform -translate-y-[2.5rem] transition-all duration-700`}>
           <Setting />
         </div>

@@ -7,9 +7,9 @@ import ToggleSwitch from "../(components)/ToggleSwitch";
 export default function Setting() {
     const setting = useContext(SettingContext);
 
-    return <div className="relative p-2 pt-10 border border-primary border-t-0 rounded-b w-full bg-black z-40">
+    return <div className="relative">
         <div className="mb-4 text-center font-bold text-xl">偏好設定</div>
-        <div className=" grid grid-cols-2 gap-4">
+        <div className=" grid grid-cols-2 gap-y-2">
 
             <div className="flex items-center">券商</div>
             <IconicSelect
@@ -34,7 +34,7 @@ export default function Setting() {
                     setting.dispatch({ type: "SET_SYNC_SELL_PRICE", payload: value })
                 }}></ToggleSwitch>
 
-            <div className="col-span-2 flex justify-end gap-2">
+            <div className="col-span-2 pt-4 flex justify-end gap-2">
                 <button
                     onClick={() => { localStorage.removeItem('preference'); }}
                     className="rounded bg-transparent text-sm underline">刪除偏好設定</button>
