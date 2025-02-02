@@ -12,8 +12,8 @@ import { TradeTypeEnum } from "../(enums)/TradeTypeEnum";
 import { SettingContext, SettingState } from "../(states)/SettingState";
 
 const initialState: CaculatorState = {
-    buyPrice: 0,
-    sellPrice: 0,
+    buyPrice: '0',
+    sellPrice: '0',
     tradeType: TradeTypeEnum.Spot,
     lotAmount: 1,
     lotCategory: LotCategoryEnum.Round,

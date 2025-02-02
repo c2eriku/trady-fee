@@ -8,11 +8,15 @@ import { SettingContext } from "../(states)/SettingState";
 import Decimal from "decimal.js";
 import { InformationCircleIcon } from "@heroicons/react/16/solid";
 
-export default function Result({ buyPrice, sellPrice, tradeType, lotAmount, lotCategory }: CaculatorState) {
+export default function Result({ buyPrice: iBuyPrice, sellPrice: iSellPrice, tradeType, lotAmount, lotCategory }: CaculatorState) {
     const setting = useContext(SettingContext);
 
     const [isOpen, setIsOpen] = useState(false);
     const [direction, setDirection] = useState<TradeDirectionEnum>(TradeDirectionEnum.Buy);
+
+    const buyPrice: number = Number(iBuyPrice);
+    const sellPrice: number = Number(iSellPrice);
+
 
     const feeRate = 0.001425 * setting.state.brokerage.feeDiscountRate;
     const transactionTax = tradeType === TradeTypeEnum.Spot ? 0.003 : 0.0015;
@@ -24,7 +28,7 @@ export default function Result({ buyPrice, sellPrice, tradeType, lotAmount, lotC
     const sellProfitAfterFees = new Decimal(sellPrice).mul(lotAmount).sub(brokerageFee(sellPrice)).sub(taxFee).floor().toNumber();
     const netProfit = sellProfitAfterFees - totalBuyPrice;
 
-    function brokerageFee(price: number) {
+    function brokerageFee(price: number | string) {
         return new Decimal(price).mul(lotAmount).mul(feeRate).floor().toNumber();
     }
 
@@ -39,7 +43,7 @@ export default function Result({ buyPrice, sellPrice, tradeType, lotAmount, lotC
                 md:flex-row">
                 <div className="w-full px-2 grid grid-cols-2 grid-cols-[40%_60%] gap-1 items-center
                 md:w-1/2">
-                    <span>買進價</span>
+                    <span>買進成本</span>
                     <div className="flex items-center justify-end">
                         <span className="mr-2 text-right">{totalBuyPrice}</span>
                         <button onClick={() => showDialog(TradeDirectionEnum.Buy)}
@@ -48,7 +52,7 @@ export default function Result({ buyPrice, sellPrice, tradeType, lotAmount, lotC
                         </button>
                     </div>
 
-                    <span>賣出價</span>
+                    <span>賣出收入</span>
                     <div className="flex items-center justify-end">
                         <span className="mr-2 text-right">{sellProfitAfterFees}</span>
                         <button onClick={() => showDialog(TradeDirectionEnum.Sell)}

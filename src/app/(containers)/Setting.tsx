@@ -7,7 +7,7 @@ import ToggleSwitch from "../(components)/ToggleSwitch";
 export default function Setting() {
     const setting = useContext(SettingContext);
 
-    return <div className="relative p-2 pt-10 border border-primary rounded w-full bg-black z-40">
+    return <div className="relative p-2 pt-10 border border-primary border-t-0 rounded-b w-full bg-black z-40">
         <div className="mb-4 text-center font-bold text-xl">偏好設定</div>
         <div className=" grid grid-cols-2 gap-4">
 

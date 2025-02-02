@@ -2,31 +2,34 @@
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/solid';
 import { Dispatch, SetStateAction } from 'react';
 import { getStockInterval } from '../(utilities)/stockInterval';
+import Decimal from 'decimal.js';
 
 interface PriceInputProps {
-    value: number;
-    onChange: Dispatch<SetStateAction<number>>
+    value: string;
+    onChange: Dispatch<SetStateAction<string>>
 }
 
 export default function PriceInput({ value, onChange }: PriceInputProps) {
 
     function updatePriceByStep(ctrl: boolean) {
-        if (typeof value === 'number') {
-            const step = getStockInterval(value);
-            let newPrice = ctrl ? value + step : value - step;
-            newPrice = Math.round(newPrice * 100) / 100;
+        const price: number = Number(value);
+        if (!isNaN(price)) {
+            const step = getStockInterval(price);
+            let newPrice = new Decimal(price);
+            newPrice = ctrl ? newPrice.add(step) : newPrice.minus(step);
 
-            onChange(newPrice);
+            onChange(newPrice.toString());
         } else {
-            onChange(0);
+            onChange('0');
         }
     }
 
     function updatePrice(event: React.ChangeEvent<HTMLInputElement>) {
-        if (event.target.value === '') {
-            return;
-        }
-        const newPrice = Number(event.target.value);
+        // if (event.target.value === '') {
+        //     return;
+        // }
+        console.log(event.target.value)
+        const newPrice = event.target.value;
         onChange(newPrice);
     }
 
