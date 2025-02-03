@@ -6,11 +6,13 @@ import { brokerageMap } from "../(models)/brokeragesList";
 
 export interface SettingState {
   brokerage: Brokerage;
+  feeDiscountRate: number;
   syncSellPrice: boolean;
 }
 
-export const initialState: SettingState = {
-  brokerage: brokerageMap.get('fubon')!,
+export const defaultState: SettingState = {
+  brokerage: brokerageMap.get('general')!,
+  feeDiscountRate: brokerageMap.get('general')!.feeDiscountRate,
   syncSellPrice: true,
 };
 
@@ -26,10 +28,7 @@ function getInitialState(): SettingState {
       }
     }
   }
-  return {
-    brokerage: brokerageMap.get("fubon")!,
-    syncSellPrice: true,
-  };
+  return defaultState;
 }
 
 
@@ -40,7 +39,7 @@ export const SettingContext = createContext<{
   state: SettingState;
   dispatch: React.Dispatch<any>;
   setLocalstorage: (newValue: SettingState) => void
-}>({ state: initialState, dispatch: () => null, setLocalstorage: () => { } });
+}>({ state: defaultState, dispatch: () => null, setLocalstorage: () => { } });
 
 
 function settingReducer(
@@ -49,7 +48,13 @@ function settingReducer(
 ) {
   switch (action.type) {
     case "SET_BROKERAGE":
-      return { ...state, brokerage: action.payload };
+      return {
+        ...state,
+        brokerage: action.payload,
+        feeDiscountRate: (action.payload as Brokerage).feeDiscountRate
+      };
+    case "SET_FEE_DISCOUNT_RATE":
+      return { ...state, feeDiscountRate: action.payload };
     case "SET_SYNC_SELL_PRICE":
       return { ...state, syncSellPrice: action.payload };
     default:

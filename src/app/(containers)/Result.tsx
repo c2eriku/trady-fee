@@ -17,8 +17,7 @@ export default function Result({ buyPrice: iBuyPrice, sellPrice: iSellPrice, tra
     const buyPrice: number = Number(iBuyPrice);
     const sellPrice: number = Number(iSellPrice);
 
-
-    const feeRate = 0.001425 * setting.state.brokerage.feeDiscountRate;
+    const feeRate = new Decimal(setting.state.feeDiscountRate).mul(0.001425).toNumber();
     const transactionTax = tradeType === TradeTypeEnum.Spot ? 0.003 : 0.0015;
     lotAmount = lotCategory === LotCategoryEnum.Round ? lotAmount * 1000 : lotAmount;
 

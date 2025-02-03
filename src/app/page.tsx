@@ -28,7 +28,7 @@ export default function Home() {
           transform transition-all duration-800 ease-in-out
           ${isSettingContainerOpen
           ? "translate-y-0 opacity-100"
-          : "-translate-y-full opacity-0"}`}>
+          : "-translate-y-full opacity-0 invisible"}`}>
         <SettingContainer
           isSettingContainerOpen={isSettingContainerOpen}
           setIsSettingContainerOpen={setIsSettingContainerOpen} />

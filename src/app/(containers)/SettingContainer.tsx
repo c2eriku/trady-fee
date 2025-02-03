@@ -46,9 +46,15 @@ export default function SettingContainer({ isSettingContainerOpen, setIsSettingC
 
                     <label className="flex items-center">手續費折數</label>
                     <input
-                        value={setting.state.brokerage.feeDiscountRate}
-                        disabled
-                        className="py-1 rounded text-foreground disabled:p-0 disabled:bg-black"
+                        type="number" inputMode="decimal"
+                        value={setting.state.feeDiscountRate}
+                        onChange={(event) => {
+                            const updValue = event.target.value;
+                            setting.dispatch({ type: "SET_FEE_DISCOUNT_RATE", payload: Number(updValue) });
+                        }}
+                        disabled={setting.state.brokerage.id !== 'general'}
+                        className="py-1 rounded 
+                            disabled:text-foreground disabled:p-0 disabled:bg-black"
                     />
 
                     <label className="flex items-center">賣價同步買價</label>
