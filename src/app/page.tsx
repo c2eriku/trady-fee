@@ -23,15 +23,16 @@ export default function Home() {
       </button>
 
       {/* 偏好設定面板 */}
-      <div className={`fixed top-0 mx-1 max-w-3xl
-          border border-primary-400 border-t-0 rounded-b-lg bg-black z-40 
+      <div className={`fixed top-0 w-full z-40
           transform transition-all duration-800 ease-in-out
           ${isSettingContainerOpen
           ? "translate-y-0 opacity-100"
           : "-translate-y-full opacity-0 invisible"}`}>
         <SettingContainer
           isSettingContainerOpen={isSettingContainerOpen}
-          setIsSettingContainerOpen={setIsSettingContainerOpen} />
+          setIsSettingContainerOpen={setIsSettingContainerOpen}
+          className="mx-1 border border-primary-400 border-t-0 rounded-b-lg bg-black"
+        />
       </div>
 
       <div className="h-screen flex flex-col gap-2 items-center min-h-screen px-4 py-2 pt-10 transition-all">

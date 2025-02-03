@@ -7,9 +7,11 @@ import ToggleSwitch from "../(components)/ToggleSwitch";
 interface SettingContainerProps {
     isSettingContainerOpen: boolean,
     setIsSettingContainerOpen: Dispatch<SetStateAction<boolean>>
+
+    className?: string
 }
 
-export default function SettingContainer({ isSettingContainerOpen, setIsSettingContainerOpen }: SettingContainerProps) {
+export default function SettingContainer({ isSettingContainerOpen, setIsSettingContainerOpen, className = '' }: SettingContainerProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const setting = useContext(SettingContext);
 
@@ -29,7 +31,7 @@ export default function SettingContainer({ isSettingContainerOpen, setIsSettingC
     return (<>
         <div className="fixed w-screen h-screen bg-black opacity-50"></div>
 
-        <div ref={containerRef} className="relative rounded-b-lg overflow-hidden" >
+        <div ref={containerRef} className={`relative rounded-b-lg overflow-hidden ${className}`}>
             <div className="px-4 pt-6 pb-2">
                 <h2 className="mb-4 text-center font-bold text-xl">偏好設定</h2>
                 <div className="grid grid-cols-2 gap-y-2">
@@ -54,7 +56,7 @@ export default function SettingContainer({ isSettingContainerOpen, setIsSettingC
                         }}
                         disabled={setting.state.brokerage.id !== 'general'}
                         className="py-1 rounded 
-                            disabled:text-foreground disabled:p-0 disabled:bg-black"
+                                disabled:text-foreground disabled:p-0 disabled:bg-black"
                     />
 
                     <label className="flex items-center">賣價同步買價</label>
