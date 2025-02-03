@@ -23,8 +23,7 @@ export default function Home() {
       </button>
 
       {/* 偏好設定面板 */}
-      <div className={`fixed top-0 mx-2 max-w-3xl
-          outline outline-1 outline-primary 
+      <div className={`fixed top-0 mx-1 max-w-3xl
           border border-primary-400 border-t-0 rounded-b-lg bg-black z-40 
           transform transition-all duration-800 ease-in-out
           ${isSettingContainerOpen

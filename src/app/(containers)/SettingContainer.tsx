@@ -29,7 +29,7 @@ export default function SettingContainer({ isSettingContainerOpen, setIsSettingC
     return (<>
         <div className="fixed w-screen h-screen bg-black opacity-50"></div>
 
-        <div className="relative rounded-b-lg overflow-hidden" ref={containerRef}>
+        <div ref={containerRef} className="relative rounded-b-lg overflow-hidden" >
             <div className="px-4 pt-6 pb-2">
                 <h2 className="mb-4 text-center font-bold text-xl">偏好設定</h2>
                 <div className="grid grid-cols-2 gap-y-2">
