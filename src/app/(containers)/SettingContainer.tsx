@@ -1,89 +1,105 @@
-import { Dispatch, SetStateAction, useContext, useEffect, useRef } from "react";
+import { Dispatch, SetStateAction, useContext, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { IconicSelect } from "../(components)/IconicSelect";
 import { brokerageMap, brokeragesIconicSelectOptions } from "../(models)/brokeragesList";
 import { SettingContext } from "../(states)/SettingState";
 import ToggleSwitch from "../(components)/ToggleSwitch";
 
 interface SettingContainerProps {
-    isSettingContainerOpen: boolean,
-    setIsSettingContainerOpen: Dispatch<SetStateAction<boolean>>
-
-    className?: string
+    isSettingContainerOpen: boolean;
+    setIsSettingContainerOpen: Dispatch<SetStateAction<boolean>>;
+    className?: string;
 }
+
+// 定義動畫變化
+const variants = {
+    open: { y: 0, opacity: 1 },
+    closed: { y: "-100%", opacity: 0 }
+};
 
 export default function SettingContainer({ isSettingContainerOpen, setIsSettingContainerOpen, className = '' }: SettingContainerProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const setting = useContext(SettingContext);
 
-    useEffect(() => {
-        if (!isSettingContainerOpen) return;
+    return (
+        <>
+            <AnimatePresence>
+                {isSettingContainerOpen && (
+                    <motion.div
+                        ref={containerRef}
+                        className={`${className} 
+                        w-full border border-primary-400 border-t-0 rounded-b-lg bg-black rounded-b-lg overflow-hidden z-30`}
+                        initial="closed"
+                        animate="open"
+                        exit="closed"
+                        variants={variants}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                        <div className="px-4 pt-6 pb-2">
+                            <h2 className="mb-4 text-center font-bold text-xl">偏好設定</h2>
+                            <div className="grid grid-cols-2 gap-y-2">
+                                <label className="flex items-center">券商</label>
+                                <IconicSelect
+                                    options={brokeragesIconicSelectOptions}
+                                    defaultValue={setting.state.brokerage.id}
+                                    onChange={(value) => {
+                                        const updBrokerage = brokerageMap.get(value!.toString());
+                                        setting.dispatch({ type: "SET_BROKERAGE", payload: updBrokerage });
+                                    }}
+                                />
 
-        const handleClickOutside = (event: MouseEvent) => {
-            if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-                setIsSettingContainerOpen(false);
-            }
-        };
+                                <label className="flex items-center">手續費折數</label>
+                                <input
+                                    type="number" inputMode="decimal"
+                                    value={setting.state.feeDiscountRate}
+                                    onChange={(event) => {
+                                        const updValue = event.target.value;
+                                        setting.dispatch({ type: "SET_FEE_DISCOUNT_RATE", payload: Number(updValue) });
+                                    }}
+                                    disabled={setting.state.brokerage.id !== 'general'}
+                                    className="py-1 rounded disabled:text-foreground disabled:p-0 disabled:bg-black"
+                                />
 
-        document.addEventListener("click", handleClickOutside);
-        return () => document.removeEventListener("click", handleClickOutside);
-    }, [isSettingContainerOpen, setIsSettingContainerOpen]);
+                                <label className="flex items-center">賣價同步買價</label>
+                                <ToggleSwitch
+                                    value={setting.state.syncSellPrice}
+                                    onChange={(value) => {
+                                        setting.dispatch({ type: "SET_SYNC_SELL_PRICE", payload: value });
+                                    }}
+                                />
 
-    return (<>
-        <div className="fixed w-screen h-screen bg-black opacity-50"></div>
+                                <div className="col-span-2 pt-4 flex justify-end gap-2">
+                                    <button
+                                        onClick={() => localStorage.removeItem("preference")}
+                                        className="rounded bg-transparent text-sm underline">
+                                        刪除偏好設定
+                                    </button>
+                                    <button
+                                        onClick={() => setting.setLocalstorage(setting.state)}
+                                        className="rounded bg-transparent text-sm underline">
+                                        儲存偏好設定並在下次使用
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
 
-        <div ref={containerRef} className={`relative rounded-b-lg overflow-hidden ${className}`}>
-            <div className="px-4 pt-6 pb-2">
-                <h2 className="mb-4 text-center font-bold text-xl">偏好設定</h2>
-                <div className="grid grid-cols-2 gap-y-2">
+                        <button onClick={() => setIsSettingContainerOpen((prev) => !prev)} className="w-full">＝</button>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
-                    <label className="flex items-center">券商</label>
-                    <IconicSelect
-                        options={brokeragesIconicSelectOptions}
-                        defaultValue={setting.state.brokerage.id}
-                        onChange={(value) => {
-                            const updBrokerage = brokerageMap.get(value!.toString());
-                            setting.dispatch({ type: "SET_BROKERAGE", payload: updBrokerage });
-                        }}
+            <AnimatePresence>
+                {isSettingContainerOpen && (
+                    <motion.div
+                        className="fixed w-screen h-screen bg-black"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.5 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        onClick={() => setIsSettingContainerOpen(false)}
                     />
-
-                    <label className="flex items-center">手續費折數</label>
-                    <input
-                        type="number" inputMode="decimal"
-                        value={setting.state.feeDiscountRate}
-                        onChange={(event) => {
-                            const updValue = event.target.value;
-                            setting.dispatch({ type: "SET_FEE_DISCOUNT_RATE", payload: Number(updValue) });
-                        }}
-                        disabled={setting.state.brokerage.id !== 'general'}
-                        className="py-1 rounded 
-                                disabled:text-foreground disabled:p-0 disabled:bg-black"
-                    />
-
-                    <label className="flex items-center">賣價同步買價</label>
-                    <ToggleSwitch
-                        value={setting.state.syncSellPrice}
-                        onChange={(value) => {
-                            setting.dispatch({ type: "SET_SYNC_SELL_PRICE", payload: value });
-                        }}
-                    />
-
-                    <div className="col-span-2 pt-4 flex justify-end gap-2">
-                        <button
-                            onClick={() => localStorage.removeItem("preference")}
-                            className="rounded bg-transparent text-sm underline">
-                            刪除偏好設定
-                        </button>
-                        <button
-                            onClick={() => setting.setLocalstorage(setting.state)}
-                            className="rounded bg-transparent text-sm underline">
-                            儲存偏好設定並在下次使用
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <button
-                onClick={() => setIsSettingContainerOpen((prev) => !prev)}
-                className="w-full">＝</button>
-        </div>
-    </>);
+                )}
+            </AnimatePresence>
+        </>
+    );
 }
