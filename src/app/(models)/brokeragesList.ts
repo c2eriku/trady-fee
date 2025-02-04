@@ -9,7 +9,7 @@ const url2 =
 
 const general: Brokerage = {
   id: "general",
-  name: "未設定",
+  name: "自定義",
   feeDiscountRate: 1,
   iconUrl: 'https://play-lh.googleusercontent.com/IXnzZTbO6XFYwVVX-R7jXBQviB4NMBEngCPU1cDBWtBf9Spcby1Uy0PQXhJ7NcuZog=w480-h960-rw',
 };

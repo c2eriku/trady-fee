@@ -23,13 +23,11 @@ export default function Home() {
       </button>
 
       {/* 偏好設定面板 */}
-      <div className={`fixed inset-0 z-40`}>
-        <SettingContainer
-          isSettingContainerOpen={isSettingContainerOpen}
-          setIsSettingContainerOpen={setIsSettingContainerOpen}
-          className=""
-        />
-      </div>
+      <SettingContainer
+        isSettingContainerOpen={isSettingContainerOpen}
+        setIsSettingContainerOpen={setIsSettingContainerOpen}
+        className=""
+      />
 
       <div className="h-screen flex flex-col gap-2 items-center min-h-screen px-4 py-2 pt-10 transition-all">
         {/* 計算器 */}

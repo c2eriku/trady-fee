@@ -53,7 +53,7 @@ export function IconicSelect({ options, defaultValue, onChange }: IconicSelectPr
     return (
         <div onClick={toggleDropdown} className="relative w-full cursor-pointer z-50">
 
-            <div className="flex items-center">
+            <div className="flex items-center rounded overflow-hidden">
                 <IconicOption
                     label={label!}
                     iconUrl={iconUrl!}
@@ -61,7 +61,7 @@ export function IconicSelect({ options, defaultValue, onChange }: IconicSelectPr
             </div>
 
             <div ref={optionsContainerRef}
-                className="absolute top-8 right-0 min-w-40 bg-gray-500 rounded"
+                className="absolute top-8 right-0 min-w-40 bg-gray-500 rounded-b"
                 style={{ display: 'none' }}>
 
                 {options.map((option) =>
@@ -85,7 +85,7 @@ interface IconicOptionProps {
 function IconicOption({ label, iconUrl, onClick }: IconicOptionProps) {
     return (
         <button onClick={onClick}
-            className="flex items-center w-full bg-white bg-opacity-20 px-2 py-1 rounded hover:bg-opacity-30">
+            className="flex items-center w-full bg-white bg-opacity-20 px-2 py-1 hover:bg-opacity-30">
             <img src={iconUrl} alt={label} className="w-6 h-6" />
             <label className="ml-2 cursor-pointer">{label}</label>
         </button>

@@ -26,16 +26,29 @@ export default function SettingContainer({ isSettingContainerOpen, setIsSettingC
             <AnimatePresence>
                 {isSettingContainerOpen && (
                     <motion.div
+                        className="fixed w-screen h-screen bg-black z-30"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.5 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        onClick={() => setIsSettingContainerOpen(false)}
+                    />
+                )}
+            </AnimatePresence>
+
+            <AnimatePresence>
+                {isSettingContainerOpen && (
+                    <motion.div
                         ref={containerRef}
                         className={`${className} 
-                        w-full border border-primary-400 border-t-0 rounded-b-lg bg-black rounded-b-lg overflow-hidden z-30`}
+                        fixed w-full px-1 bg-black overflow-hidden z-30`}
                         initial="closed"
                         animate="open"
                         exit="closed"
                         variants={variants}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
                     >
-                        <div className="px-4 pt-6 pb-2">
+                        <div className="px-4 pt-6 pb-2 border border-primary-400 border-t-0">
                             <h2 className="mb-4 text-center font-bold text-xl">偏好設定</h2>
                             <div className="grid grid-cols-2 gap-y-2">
                                 <label className="flex items-center">券商</label>
@@ -57,7 +70,7 @@ export default function SettingContainer({ isSettingContainerOpen, setIsSettingC
                                         setting.dispatch({ type: "SET_FEE_DISCOUNT_RATE", payload: Number(updValue) });
                                     }}
                                     disabled={setting.state.brokerage.id !== 'general'}
-                                    className="py-1 rounded disabled:text-foreground disabled:p-0 disabled:bg-black"
+                                    className="min-h-8 py-1 rounded disabled:text-foreground disabled:p-0 disabled:bg-black"
                                 />
 
                                 <label className="flex items-center">賣價同步買價</label>
@@ -83,21 +96,8 @@ export default function SettingContainer({ isSettingContainerOpen, setIsSettingC
                             </div>
                         </div>
 
-                        <button onClick={() => setIsSettingContainerOpen((prev) => !prev)} className="w-full">＝</button>
+                        <button onClick={() => setIsSettingContainerOpen((prev) => !prev)} className="w-full rounded-b-md">＝</button>
                     </motion.div>
-                )}
-            </AnimatePresence>
-
-            <AnimatePresence>
-                {isSettingContainerOpen && (
-                    <motion.div
-                        className="fixed w-screen h-screen bg-black"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.5 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        onClick={() => setIsSettingContainerOpen(false)}
-                    />
                 )}
             </AnimatePresence>
         </>
