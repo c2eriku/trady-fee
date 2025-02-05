@@ -4,6 +4,7 @@ import { IconicSelect } from "../(components)/IconicSelect";
 import { brokerageMap, brokeragesIconicSelectOptions } from "../(models)/brokeragesList";
 import { SettingContext } from "../(states)/SettingState";
 import ToggleSwitch from "../(components)/ToggleSwitch";
+import { Bars2Icon } from "@heroicons/react/16/solid";
 
 interface SettingContainerProps {
     isSettingContainerOpen: boolean;
@@ -96,7 +97,9 @@ export default function SettingContainer({ isSettingContainerOpen, setIsSettingC
                             </div>
                         </div>
 
-                        <button onClick={() => setIsSettingContainerOpen((prev) => !prev)} className="w-full rounded-b-md">＝</button>
+                        <button onClick={() => setIsSettingContainerOpen((prev) => !prev)} className="flex justify-center items-center w-full h-4 rounded-b-lg"> 
+                            <Bars2Icon className="size-3"></Bars2Icon>
+                        </button>
                     </motion.div>
                 )}
             </AnimatePresence>
