@@ -40,12 +40,12 @@ export default function PriceInput({ value, onChange }: PriceInputProps) {
 
             <button tabIndex={-1} onClick={() => updatePriceByStep(false)}
                 className='p-2 bg-primary-400 hover:bg-primary-500'>
-                <MinusIcon className='inline-block size-5'></MinusIcon>
+                <MinusIcon className='inline-block size-6'></MinusIcon>
             </button>
 
             <button tabIndex={-1} onClick={() => updatePriceByStep(true)}
                 className='p-2 bg-primary-600 hover:bg-primary-700'>
-                <PlusIcon className='inline-block size-5'></PlusIcon>
+                <PlusIcon className='inline-block size-6'></PlusIcon>
             </button>
         </div>
     )

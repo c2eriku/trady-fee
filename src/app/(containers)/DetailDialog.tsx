@@ -1,41 +1,102 @@
 import { XMarkIcon } from "@heroicons/react/16/solid";
 import { TradeDirectionEnum } from "../(enums)/TradingActionEnum";
+import { AnimatePresence, motion } from "framer-motion";
+import AcctSpan from "../(components)/AcctSpan";
 
 
 interface DetailDialogProps {
     isOpen: boolean,
     onClose: () => void,
     direction: TradeDirectionEnum,
+    buyPrice: number,
+    sellPrice: number,
+    lotAmount: number,
     brokerageFee: number,
     taxFee: number
 }
 
-export default function DetailDialog({ isOpen, onClose, direction, brokerageFee, taxFee }: DetailDialogProps) {
-    if (!isOpen) return null;
+
+export default function DetailDialog({
+    isOpen,
+    onClose,
+    direction,
+    buyPrice,
+    sellPrice,
+    lotAmount,
+    brokerageFee,
+    taxFee }: DetailDialogProps) {
     return (
-        <div onClick={onClose}
-            className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
+        <>
+            <AnimatePresence>
+                {isOpen && <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 0.3 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    onClick={onClose}
+                    className="fixed inset-0 w-screen h-screen bg-black"
+                >
+                </motion.div>}
+            </AnimatePresence>
 
-            <div className="relative min-h-40 bg-background border border-primary rounded p-4">
-                <button className="absolute top-0 right-0 rounded-bl-lg">
-                    <XMarkIcon className="size-8 hover:bg-primary-600 active:bg-primary-600"></XMarkIcon>
-                </button>
 
-                <div className="flex justify-center mb-2">
-                    <h3>{direction === TradeDirectionEnum.Buy ? '買進' : '賣出'} 費用明細 </h3>
-                </div>
+            <AnimatePresence>
+                {isOpen && <motion.div
+                    initial={{ rotateY: 90, opacity: 0 }}
+                    animate={{ rotateY: 0, opacity: 1 }}
+                    exit={{ rotateY: 90, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    className="fixed inset-0 m-auto w-64 h-64 rounded-lg shadow-lg"
+                >
 
-                <div className="grid grid-cols-2">
+                    <div className="relative min-h-40 bg-background border border-primary rounded p-4">
+                        <button className="absolute top-0 right-0 rounded-bl-md overflow-hidden" onClick={onClose}>
+                            <XMarkIcon className="size-8 hover:bg-primary-600"></XMarkIcon>
+                        </button>
 
-                    <label className="mr-2">證券手續費</label>
-                    <div className="text-right pr-4">{brokerageFee}</div>
+                        <div className="flex justify-center mb-2">
+                            <h3>{direction === TradeDirectionEnum.Buy ? '買進' : '賣出'} 費用明細 </h3>
+                        </div>
 
-                    {direction === TradeDirectionEnum.Sell && (<>
-                        <label className="mr-2">證券交易稅</label>
-                        <div className="text-right pr-4">{taxFee}</div>
-                    </>)}
-                </div>
-            </div>
-        </div>
+                        <div className="grid grid-cols-2">
+                            <DirectionDetail {...{ direction, buyPrice, sellPrice, lotAmount }} />
+
+                            <label className="mr-2">證券手續費</label>
+                            <AcctSpan className="text-right pr-4">{brokerageFee}</AcctSpan>
+
+                            {direction === TradeDirectionEnum.Sell && (<>
+                                <label className="mr-2">證券交易稅</label>
+                                <AcctSpan className="text-right pr-4">{taxFee}</AcctSpan>
+                            </>)}
+                        </div>
+                    </div>
+                </motion.div>}
+            </AnimatePresence>
+        </>
     )
+}
+
+function DirectionDetail({
+    direction,
+    buyPrice,
+    sellPrice,
+    lotAmount
+}: {
+    direction: TradeDirectionEnum,
+    buyPrice: number,
+    sellPrice: number,
+    lotAmount: number,
+}) {
+    if (direction === TradeDirectionEnum.Buy) {
+        return (<>
+            <label className="mr-2">買進費用</label>
+            <AcctSpan className="text-right pr-4">{buyPrice * lotAmount}</AcctSpan>
+        </>);
+
+    } else {
+        return (<>
+            <label className="mr-2">賣出收益</label>
+            <AcctSpan className="text-right pr-4">{sellPrice * lotAmount}</AcctSpan>
+        </>);
+    }
 }

@@ -7,6 +7,8 @@ import { TradeDirectionEnum } from "../(enums)/TradingActionEnum";
 import { SettingContext } from "../(states)/SettingState";
 import Decimal from "decimal.js";
 import { InformationCircleIcon } from "@heroicons/react/16/solid";
+import { AnimatePresence, motion } from "framer-motion";
+import AcctSpan from "../(components)/AcctSpan";
 
 export default function Result({ buyPrice: iBuyPrice, sellPrice: iSellPrice, tradeType, lotAmount, lotCategory }: CaculatorState) {
     const setting = useContext(SettingContext);
@@ -44,7 +46,7 @@ export default function Result({ buyPrice: iBuyPrice, sellPrice: iSellPrice, tra
                 md:w-1/2">
                     <span>買進成本</span>
                     <div className="flex items-center justify-end">
-                        <span className="mr-2 text-right">{totalBuyPrice}</span>
+                        <AcctSpan className="mr-2 text-right">{totalBuyPrice}</AcctSpan>
                         <button onClick={() => showDialog(TradeDirectionEnum.Buy)}
                             className="p-px border border-primary rounded flex bg-transparent text-primary">
                             <InformationCircleIcon className='inline-block size-8'></InformationCircleIcon>
@@ -53,7 +55,7 @@ export default function Result({ buyPrice: iBuyPrice, sellPrice: iSellPrice, tra
 
                     <span>賣出收入</span>
                     <div className="flex items-center justify-end">
-                        <span className="mr-2 text-right">{sellProfitAfterFees}</span>
+                        <AcctSpan className="mr-2 text-right">{sellProfitAfterFees}</AcctSpan>
                         <button onClick={() => showDialog(TradeDirectionEnum.Sell)}
                             className="p-px border border-primary rounded flex bg-transparent text-primary">
                             <InformationCircleIcon className='inline-block size-8'></InformationCircleIcon>
@@ -64,15 +66,19 @@ export default function Result({ buyPrice: iBuyPrice, sellPrice: iSellPrice, tra
                 <div className="px-2 grid grid-cols-2 grid-cols-[40%_60%] mt-1 p-1 bg-primary-600 bg-opacity-20 rounded
                  md:w-1/2 md:grid-cols-1">
                     <span>淨利／損</span>
-                    <span className="text-right">{netProfit}</span>
+                    <AcctSpan className="text-right">{netProfit}</AcctSpan>
                     <span></span>
                 </div>
             </section >
+
 
             <DetailDialog
                 isOpen={isOpen}
                 onClose={() => setIsOpen(false)}
                 direction={direction}
+                buyPrice={buyPrice}
+                sellPrice={sellPrice}
+                lotAmount={lotAmount}
                 brokerageFee={brokerageFee(direction === TradeDirectionEnum.Buy ? buyPrice : sellPrice)}
                 taxFee={taxFee} />
         </>

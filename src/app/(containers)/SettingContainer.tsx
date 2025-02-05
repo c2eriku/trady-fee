@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { IconicSelect } from "../(components)/IconicSelect";
 import { brokerageMap, brokeragesIconicSelectOptions } from "../(models)/brokeragesList";
 import { SettingContext } from "../(states)/SettingState";
-import { ChevronUpIcon } from "@heroicons/react/16/solid";
+import { ChevronDoubleUpIcon } from "@heroicons/react/16/solid";
 import ToggleSwitch from "../(components)/ToggleSwitch";
 
 interface SettingContainerProps {
@@ -27,11 +27,11 @@ export default function SettingContainer({ isSettingContainerOpen, setIsSettingC
             <AnimatePresence>
                 {isSettingContainerOpen && (
                     <motion.div
-                        className="fixed w-screen h-screen bg-black z-30"
+                        className="fixed inset-0 w-screen h-screen bg-black z-30"
                         initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.5 }}
+                        animate={{ opacity: 0.3 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
                         onClick={() => setIsSettingContainerOpen(false)}
                     />
                 )}
@@ -91,15 +91,14 @@ export default function SettingContainer({ isSettingContainerOpen, setIsSettingC
                                     <button
                                         onClick={() => setting.setLocalstorage(setting.state)}
                                         className="rounded bg-transparent text-sm underline">
-                                        儲存偏好設定並在下次使用
+                                        儲存偏好設定在下次使用
                                     </button>
                                 </div>
                             </div>
                         </div>
 
                         <button onClick={() => setIsSettingContainerOpen((prev) => !prev)} className="flex justify-center items-center w-full h-4 rounded-b-lg">
-                            <ChevronUpIcon className="size-4"></ChevronUpIcon>
-                            <span className="text-xs">收合</span>
+                            <ChevronDoubleUpIcon className="size-4"></ChevronDoubleUpIcon>
                         </button>
                     </motion.div>
                 )}
