@@ -29,7 +29,7 @@ export default function Home() {
         className=""
       />
 
-      <div className="h-screen flex gap-2 items-center min-h-screen px-2 py-4 transition-all">
+      <div className="h-screen flex gap-2 items-center min-h-screen px-1 py-4 transition-all">
         {/* 計算器 */}
         <div className="w-full pb-12">
           <Caculator />
