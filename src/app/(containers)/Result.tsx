@@ -40,7 +40,7 @@ export default function Result({ buyPrice: iBuyPrice, sellPrice: iSellPrice, tra
 
     return (
         <>
-            <section className="flex flex-col gap-1 border rounded p-2
+            <section className="flex flex-col gap-1 w-full border rounded p-2
                 md:flex-row">
                 <div className="w-full px-2 grid grid-cols-2 grid-cols-[40%_60%] gap-1 items-center
                 md:w-1/2">

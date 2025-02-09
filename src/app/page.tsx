@@ -14,27 +14,28 @@ export default function Home() {
   }
 
   return (
-    <SettingProvider>
+    <div className="">
       {/* 設定按鈕 */}
       <button
         onClick={handleSettingClick}
-        className="fixed bottom-4 right-4 outline p-2 bg-[#6299d5] rounded-full z-50 shadow-md">
+        className="fixed bottom-4 right-4 outline p-2 bg-[#6299d5] rounded-full z-50 shadow-md" >
         <Cog6ToothIcon className={`size-8 transition-transform ${isSettingContainerOpen ? 'rotate-[150deg]' : 'rotate-0'}`} />
-      </button>
+      </button >
 
       {/* 偏好設定面板 */}
       <SettingContainer
         isSettingContainerOpen={isSettingContainerOpen}
         setIsSettingContainerOpen={setIsSettingContainerOpen}
-        className=""
+        className="fixed"
       />
 
-      <div className="h-screen flex gap-2 items-center min-h-screen px-1 py-4 transition-all">
+      <div className="min-h-screen min-w-screen bg-background
+        sm:w-2/5 sm:m-auto h-screen flex gap-2 items-center min-h-screen px-1 py-4 transition-all">
         {/* 計算器 */}
         <div className="w-full pb-12">
           <Caculator />
         </div>
       </div>
-    </SettingProvider>
+    </div>
   );
 }

@@ -29,7 +29,7 @@ export default function SettingContainer({ isSettingContainerOpen, setIsSettingC
                     <motion.div
                         className="fixed inset-0 w-screen h-screen bg-black z-30"
                         initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.3 }}
+                        animate={{ opacity: 0.5 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3, ease: "easeOut" }}
                         onClick={() => setIsSettingContainerOpen(false)}
@@ -42,12 +42,12 @@ export default function SettingContainer({ isSettingContainerOpen, setIsSettingC
                     <motion.div
                         ref={containerRef}
                         className={`${className} 
-                        fixed w-full px-1 bg-black overflow-hidden z-30`}
+                        fixed w-full px-1 bg-black rounded-lg overflow-hidden bg-clip-content z-30`}
                         initial="closed"
                         animate="open"
                         exit="closed"
                         variants={variants}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
                         <div className="px-4 pt-6 pb-2 border border-primary-400 border-t-0">
                             <h2 className="mb-4 text-center font-bold text-xl">偏好設定</h2>

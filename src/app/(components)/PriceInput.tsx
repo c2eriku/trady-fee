@@ -54,9 +54,9 @@ export default function PriceInput({ value, onChange }: PriceInputProps) {
     }
 
     return (
-        <div className="flex w-full h-10">
+        <div className="w-full flex h-10">
             <input type="number" inputMode="decimal" value={value} onChange={updatePrice}
-                className='flex-grow'></input>
+                className='grow w-full'></input>
 
             <button tabIndex={-1}
                 onClick={() => updatePriceByStep(false)}

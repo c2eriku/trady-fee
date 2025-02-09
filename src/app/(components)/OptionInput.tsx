@@ -29,7 +29,10 @@ export default function OptionInput(props: OptionInputProps) {
 
     return (
         <div className="flex w-full h-10">
-            <input type="number" inputMode="decimal" value={value} onChange={updateValue} className="grow"></input>
+            <input type="number" inputMode="decimal"
+                value={value}
+                onChange={updateValue}
+                className="grow w-full"/>
 
             {props.radioGroup.options.map((option, index) => {
                 return (
@@ -37,7 +40,7 @@ export default function OptionInput(props: OptionInputProps) {
                         <input type="radio" name={props.radioGroup.name} id={option.value} value={option.value}
                             onChange={updateOptionValue} defaultChecked={option.value === optionValue} className="hidden peer" ></input>
                         <label htmlFor={option.value}
-                            className="flex items-center h-full px-2 py-1 border border-primary cursor-pointer
+                            className="flex justify-center items-center min-w-12 h-full px-1 py-1 border border-primary cursor-pointer
                             peer-checked:bg-primary peer-checked:text-white"
                         >{option.label}</label>
                     </div>
