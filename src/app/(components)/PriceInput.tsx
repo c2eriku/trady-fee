@@ -65,7 +65,7 @@ export default function PriceInput({ value, onChange }: PriceInputProps) {
                 onPointerLeave={stopInterval}
                 className='p-2 bg-primary-400 select-none
                     hover:bg-primary-500'>
-                <MinusIcon className='inline-block size-6'></MinusIcon>
+                <MinusIcon className='inline-block size-6 select-none'></MinusIcon>
             </button>
 
             <button tabIndex={-1}
@@ -75,7 +75,7 @@ export default function PriceInput({ value, onChange }: PriceInputProps) {
                 onPointerLeave={stopInterval}
                 className='p-2 bg-primary-600 select-none
                     hover:bg-primary-700'>
-                <PlusIcon className='inline-block size-6'></PlusIcon>
+                <PlusIcon className='inline-block size-6 select-none'></PlusIcon>
             </button>
         </div>
     )
