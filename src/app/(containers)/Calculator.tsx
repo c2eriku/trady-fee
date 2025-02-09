@@ -6,7 +6,7 @@ import { tradeTypeRadioGroup } from "../(models)/tradeTypeRadioGroup";
 import OptionInput from "../(components)/OptionInput";
 import { stockAmount } from "../(models)/stockAmount";
 import Result from "./Result";
-import { CaculatorState } from "../(interfaces)/CaculatorState";
+import { CaculatorState } from "../(interfaces)/CalculatorState";
 import { LotCategoryEnum } from "../(enums)/LotCategoryEnum";
 import { TradeTypeEnum } from "../(enums)/TradeTypeEnum";
 import { SettingContext, SettingState } from "../(states)/SettingState";

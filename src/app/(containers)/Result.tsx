@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { TradeTypeEnum } from "../(enums)/TradeTypeEnum";
 import { LotCategoryEnum } from "../(enums)/LotCategoryEnum";
-import { CaculatorState } from "../(interfaces)/CaculatorState";
+import { CaculatorState } from "../(interfaces)/CalculatorState";
 import DetailDialog from "./DetailDialog";
 import { TradeDirectionEnum } from "../(enums)/TradingActionEnum";
 import { SettingContext } from "../(states)/SettingState";
