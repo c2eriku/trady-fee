@@ -32,7 +32,7 @@ export default function Home() {
       <div className="min-h-screen min-w-screen bg-background
         sm:w-2/5 sm:m-auto h-screen flex gap-2 items-center min-h-screen px-1 py-4 transition-all">
         {/* 計算器 */}
-        <div className="w-full pb-12">
+        <div className="w-full px-4 pb-12">
           <Caculator />
         </div>
       </div>
