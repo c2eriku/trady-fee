@@ -10,7 +10,8 @@ interface DetailDialogProps {
     direction: TradeDirectionEnum,
     buyPrice: number,
     sellPrice: number,
-    lotAmount: number,
+    totalLotAmount: number,
+    finalResult: number,
     brokerageFee: number,
     taxFee: number
 }
@@ -22,7 +23,8 @@ export default function DetailDialog({
     direction,
     buyPrice,
     sellPrice,
-    lotAmount,
+    totalLotAmount,
+    finalResult,
     brokerageFee,
     taxFee }: DetailDialogProps) {
     return (
@@ -59,15 +61,26 @@ export default function DetailDialog({
                         </div>
 
                         <div className="grid grid-cols-2">
-                            <DirectionDetail {...{ direction, buyPrice, sellPrice, lotAmount }} />
+                            <DirectionDetail {...{ direction, buyPrice, sellPrice, totalLotAmount }} />
 
                             <label className="mr-2">證券手續費</label>
-                            <AcctSpan className="text-right pr-4">{brokerageFee}</AcctSpan>
+                            <AcctSpan
+                                showColor={true}
+                                className="text-right pr-4">
+                                {brokerageFee}
+                            </AcctSpan>
 
-                            {direction === TradeDirectionEnum.Sell && (<>
-                                <label className="mr-2">證券交易稅</label>
-                                <AcctSpan className="text-right pr-4">{taxFee}</AcctSpan>
-                            </>)}
+                            {direction === TradeDirectionEnum.Sell && (
+                                <>
+                                    <label className="mr-2">證券交易稅</label>
+                                    <AcctSpan className="text-right pr-4">{taxFee}</AcctSpan>
+                                </>
+                            )}
+
+
+                            <label className="mr-2">=</label>
+                            <AcctSpan className="text-right pr-4">{finalResult}</AcctSpan>
+
                         </div>
                     </div>
                 </motion.div>}
@@ -80,23 +93,23 @@ function DirectionDetail({
     direction,
     buyPrice,
     sellPrice,
-    lotAmount
+    totalLotAmount
 }: {
     direction: TradeDirectionEnum,
     buyPrice: number,
     sellPrice: number,
-    lotAmount: number,
+    totalLotAmount: number,
 }) {
     if (direction === TradeDirectionEnum.Buy) {
         return (<>
-            <label className="mr-2">買進費用</label>
-            <AcctSpan className="text-right pr-4">{buyPrice * lotAmount}</AcctSpan>
+            <label className="mr-2">買進原價</label>
+            <AcctSpan className="text-right pr-4">{buyPrice * totalLotAmount}</AcctSpan>
         </>);
 
     } else {
         return (<>
-            <label className="mr-2">賣出收益</label>
-            <AcctSpan className="text-right pr-4">{sellPrice * lotAmount}</AcctSpan>
+            <label className="mr-2">賣出原價</label>
+            <AcctSpan className="text-right pr-4">{sellPrice * totalLotAmount}</AcctSpan>
         </>);
     }
 }

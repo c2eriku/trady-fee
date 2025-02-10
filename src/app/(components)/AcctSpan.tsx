@@ -1,18 +1,21 @@
+import { color } from "framer-motion";
 import React, { PropsWithChildren } from "react";
 
-export interface AcctSpanProps extends React.HTMLAttributes<HTMLSpanElement> {}
+export interface AcctSpanProps extends React.HTMLAttributes<HTMLSpanElement> {
+    showColor?: boolean;
+}
 
-export default function AcctSpan({ children, className, ...props }: PropsWithChildren<AcctSpanProps>) {
-  
-    
+export default function AcctSpan({ children, className, showColor = false, ...props }: PropsWithChildren<AcctSpanProps>) {
+    const childrenNumber: number = Number(children);
+    let color = '';
+    if (showColor && !isNaN(childrenNumber)) {
+        if (childrenNumber < 0) color = 'text-red-500';
+        else 'text-foreground';
+    }
+
     return (
-        <span className={className} {...props}>
+        <span className={`${className} ${color}`} {...props}>
             {children?.toLocaleString()}
         </span>
     );
-}
-
-function formatAccounting(value: number, currency: string = ""): string {
-    const absValue = Math.abs(value).toLocaleString(); // 轉成千分位格式
-    return value < 0 ? `(${currency}${absValue})` : `${currency}${absValue}`;
 }

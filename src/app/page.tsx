@@ -19,7 +19,7 @@ export default function Home() {
       <button
         onClick={handleSettingClick}
         className="fixed bottom-4 right-4 outline p-2 bg-[#6299d5] rounded-full z-50 shadow-md" >
-        <Cog6ToothIcon className={`size-8 transition-transform ${isSettingContainerOpen ? 'rotate-[150deg]' : 'rotate-0'}`} />
+        <Cog6ToothIcon className={`size-8 transition-transform ${isSettingContainerOpen ? 'rotate-[-150deg]' : 'rotate-0'}`} />
       </button >
 
       {/* 偏好設定面板 */}

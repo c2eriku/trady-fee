@@ -54,39 +54,49 @@ export default function Calculator() {
     const setting = useContext(SettingContext);
 
     return (
-        <div className="relative">
+        <div className="relative flex flex-col gap-1">
 
             <section className="mb-6">
                 <Result {...state} />
             </section>
 
-            <label>買進價 {state.buyPrice}</label>
-            <PriceInput
-                value={state.buyPrice}
-                onChange={(value) => dispatch({ type: "SET_BUY_PRICE", payload: value, settingState: setting.state })}
-            />
+            <div>
+                <label htmlFor="buyPrice">買進價</label>
+                <PriceInput
+                    id="buyPrice"
+                    value={state.buyPrice}
+                    onPriceChange={(value) => dispatch({ type: "SET_BUY_PRICE", payload: value, settingState: setting.state })}
+                />
+            </div>
 
-            <label>賣出價 {state.sellPrice}</label>
-            <PriceInput
-                value={state.sellPrice}
-                onChange={(value) => dispatch({ type: "SET_SELL_PRICE", payload: value })}
-            />
+            <div>
+                <label htmlFor="sellPrice">賣出價</label>
+                <PriceInput
+                    id="sellPrice"
+                    value={state.sellPrice}
+                    onPriceChange={(value) => dispatch({ type: "SET_SELL_PRICE", payload: value })}
+                />
+            </div>
 
-            <label>交易模式 {state.tradeType}</label>
-            <StyledRadio
-                radioGroup={tradeTypeRadioGroup}
-                value={state.tradeType}
-                onChange={(value) => dispatch({ type: "SET_TRADE_TYPE", payload: value })}
-            />
+            <div>
+                <label>交易模式</label>
+                <StyledRadio
+                    radioGroup={tradeTypeRadioGroup}
+                    value={state.tradeType}
+                    onChange={(value) => dispatch({ type: "SET_TRADE_TYPE", payload: value })}
+                />
+            </div>
 
-            <label>股數單元 {state.lotAmount} {state.lotCategory}</label>
-            <OptionInput
-                value={state.lotAmount}
-                onChange={(value) => dispatch({ type: "SET_LOT_AMOUNT", payload: value })}
-                optionValue={state.lotCategory}
-                onOptionChange={(value) => dispatch({ type: "SET_LOT_CATEGORY", payload: value })}
-                radioGroup={stockAmount}
-            />
+            <div>
+                <label>股數單元</label>
+                <OptionInput
+                    value={state.lotAmount}
+                    onChange={(value) => dispatch({ type: "SET_LOT_AMOUNT", payload: value })}
+                    optionValue={state.lotCategory}
+                    onOptionChange={(value) => dispatch({ type: "SET_LOT_CATEGORY", payload: value })}
+                    radioGroup={stockAmount}
+                />
+            </div>
         </div>
     );
 }

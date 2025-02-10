@@ -7,35 +7,43 @@ import { TradeDirectionEnum } from "../(enums)/TradingActionEnum";
 import { SettingContext } from "../(states)/SettingState";
 import Decimal from "decimal.js";
 import { InformationCircleIcon } from "@heroicons/react/16/solid";
-import { AnimatePresence, motion } from "framer-motion";
 import AcctSpan from "../(components)/AcctSpan";
 
 export default function Result({ buyPrice: iBuyPrice, sellPrice: iSellPrice, tradeType, lotAmount, lotCategory }: CaculatorState) {
     const setting = useContext(SettingContext);
-
     const [isOpen, setIsOpen] = useState(false);
     const [direction, setDirection] = useState<TradeDirectionEnum>(TradeDirectionEnum.Buy);
 
+    // price
     const buyPrice: number = Number(iBuyPrice);
     const sellPrice: number = Number(iSellPrice);
-
+    // rate and amount
     const feeRate = new Decimal(setting.state.feeDiscountRate).mul(0.001425).toNumber();
     const transactionTax = tradeType === TradeTypeEnum.Spot ? 0.003 : 0.0015;
-    lotAmount = lotCategory === LotCategoryEnum.Round ? lotAmount * 1000 : lotAmount;
-
-    const taxFee = new Decimal(sellPrice).mul(lotAmount).mul(transactionTax).floor().toNumber();
-
-    const totalBuyPrice = new Decimal(buyPrice).mul(lotAmount).add(brokerageFee(buyPrice)).floor().toNumber();
-    const sellProfitAfterFees = new Decimal(sellPrice).mul(lotAmount).sub(brokerageFee(sellPrice)).sub(taxFee).floor().toNumber();
+    const totalLotAmount = lotCategory === LotCategoryEnum.Round ? lotAmount * 1000 : lotAmount;
+    // fee
+    const buyFee = new Decimal(buyPrice).mul(totalLotAmount).mul(feeRate).floor().toNumber();
+    const sellFee = new Decimal(sellPrice).mul(totalLotAmount).mul(feeRate).floor().toNumber();
+    const taxFee = new Decimal(sellPrice).mul(totalLotAmount).mul(transactionTax).floor().toNumber();
+    // total result
+    const totalBuyPrice = new Decimal(buyPrice).mul(totalLotAmount).add(buyFee).floor().toNumber();
+    const sellProfitAfterFees = new Decimal(sellPrice).mul(totalLotAmount).sub(sellFee).sub(taxFee).floor().toNumber();
     const netProfit = sellProfitAfterFees - totalBuyPrice;
 
-    function brokerageFee(price: number | string) {
-        return new Decimal(price).mul(lotAmount).mul(feeRate).floor().toNumber();
-    }
 
     function showDialog(direction: TradeDirectionEnum) {
         setDirection(direction);
         setIsOpen(true);
+    }
+
+    const InfoButton = ({ onClick }: { onClick: () => void }) => {
+        return (
+            <button onClick={onClick}
+                className="flex items-center p-1 border border-primary rounded bg-transparent text-primary-400">
+                <InformationCircleIcon className="size-6 mr-px" />
+                <label className="px-p">更多訊息</label>
+            </button>
+        );
     }
 
     return (
@@ -47,19 +55,13 @@ export default function Result({ buyPrice: iBuyPrice, sellPrice: iSellPrice, tra
                     <span>買進成本</span>
                     <div className="flex items-center justify-end">
                         <AcctSpan className="mr-2 text-right">{totalBuyPrice}</AcctSpan>
-                        <button onClick={() => showDialog(TradeDirectionEnum.Buy)}
-                            className="p-px border border-primary rounded flex bg-transparent text-primary">
-                            <InformationCircleIcon className='inline-block size-8'></InformationCircleIcon>
-                        </button>
+                        <InfoButton onClick={() => showDialog(TradeDirectionEnum.Buy)} />
                     </div>
 
                     <span>賣出收入</span>
                     <div className="flex items-center justify-end">
                         <AcctSpan className="mr-2 text-right">{sellProfitAfterFees}</AcctSpan>
-                        <button onClick={() => showDialog(TradeDirectionEnum.Sell)}
-                            className="p-px border border-primary rounded flex bg-transparent text-primary">
-                            <InformationCircleIcon className='inline-block size-8'></InformationCircleIcon>
-                        </button>
+                        <InfoButton onClick={() => showDialog(TradeDirectionEnum.Sell)} />
                     </div>
                 </div>
 
@@ -78,8 +80,9 @@ export default function Result({ buyPrice: iBuyPrice, sellPrice: iSellPrice, tra
                 direction={direction}
                 buyPrice={buyPrice}
                 sellPrice={sellPrice}
-                lotAmount={lotAmount}
-                brokerageFee={brokerageFee(direction === TradeDirectionEnum.Buy ? buyPrice : sellPrice)}
+                totalLotAmount={totalLotAmount}
+                finalResult={direction === TradeDirectionEnum.Buy ? totalBuyPrice : sellProfitAfterFees}
+                brokerageFee={direction === TradeDirectionEnum.Buy ? buyFee : sellFee}
                 taxFee={taxFee} />
         </>
     );

@@ -4,12 +4,12 @@ import { Dispatch, SetStateAction, useRef } from 'react';
 import { getStockInterval } from '../(utilities)/stockInterval';
 import Decimal from 'decimal.js';
 
-interface PriceInputProps {
+interface PriceInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     value: string;
-    onChange: Dispatch<SetStateAction<string>>
+    onPriceChange: Dispatch<SetStateAction<string>>
 }
 
-export default function PriceInput({ value, onChange }: PriceInputProps) {
+export default function PriceInput({ value, onPriceChange }: PriceInputProps) {
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
     let insideValue: string = value;
 
@@ -41,16 +41,16 @@ export default function PriceInput({ value, onChange }: PriceInputProps) {
             let newPrice = new Decimal(price);
             newPrice = isIncrement ? newPrice.add(step) : newPrice.minus(step);
             insideValue = newPrice.toString();
-            onChange(newPrice.toString());
+            onPriceChange(newPrice.toString());
         } else {
-            onChange('0');
+            onPriceChange('0');
         }
     }
 
     function updatePrice(event: React.ChangeEvent<HTMLInputElement>) {
         const newPrice = event.target.value;
         insideValue = newPrice.toString();
-        onChange(newPrice);
+        onPriceChange(newPrice);
     }
 
     return (
