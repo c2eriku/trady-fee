@@ -1,7 +1,6 @@
 'use client';
 import { Cog6ToothIcon } from "@heroicons/react/24/solid";
 import Calculator from "./(containers)/Calculator";
-import SettingProvider from "./(states)/SettingState";
 import SettingContainer from "./(containers)/SettingContainer";
 import { useState } from "react";
 
@@ -30,8 +29,26 @@ export default function Home() {
       />
 
       <div className="h-[100dvh] min-h-[100svh] w-screen bg-background
-        flex justify-center items-center gap-2 px-1 py-4 transition-all
+        flex flex-col justify-center items-center gap-2 px-1 py-4 transition-all
         sm:w-2/5 sm:m-auto ">
+        {/* 標題 */}
+        <h1>
+          <svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg" className="w-full">
+            <g transform="translate(140, 80)">
+              <text fontFamily="Arial, sans-serif" fontSize="45" fontWeight="bold" fill="white">
+                <tspan>Tradi</tspan>
+              </text>
+            </g>
+
+            <g transform="translate(250, 80)">
+              <text fontFamily="Arial, sans-serif" fontSize="45" fontWeight="300" fill="white">
+                <tspan>Fee</tspan>
+              </text>
+            </g>
+          </svg>
+
+
+        </h1>
         {/* 計算器 */}
         <div className="w-full px-4 pb-12">
           <Calculator />

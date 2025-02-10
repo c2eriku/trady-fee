@@ -51,7 +51,7 @@ export default function DetailDialog({
                     className="fixed inset-0 m-auto w-64 h-64 rounded-lg shadow-lg"
                 >
 
-                    <div className="relative min-h-40 bg-background border border-primary rounded p-4">
+                    <div className="relative min-h-72 bg-background border border-primary rounded p-4">
                         <button className="absolute top-0 right-0 rounded-bl-md overflow-hidden" onClick={onClose}>
                             <XMarkIcon className="size-8 hover:bg-primary-600"></XMarkIcon>
                         </button>
@@ -77,10 +77,8 @@ export default function DetailDialog({
                                 </>
                             )}
 
-
                             <label className="mr-2">=</label>
                             <AcctSpan className="text-right pr-4">{finalResult}</AcctSpan>
-
                         </div>
                     </div>
                 </motion.div>}
