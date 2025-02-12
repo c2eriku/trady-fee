@@ -54,7 +54,7 @@ export default function PriceInput({ value, onPriceChange }: PriceInputProps) {
     }
 
     return (
-        <div className="w-full flex h-10 select-none touch-none">
+        <div className="w-full flex h-10">
             <input type="number" inputMode="decimal" value={value} onChange={updatePrice}
                 className='grow w-full'></input>
 
@@ -63,9 +63,9 @@ export default function PriceInput({ value, onPriceChange }: PriceInputProps) {
                 onPointerDown={handleMinus}
                 onPointerUp={stopInterval}
                 onPointerLeave={stopInterval}
-                className='p-2 bg-primary-400 select-none touch-none
+                className='p-2 bg-primary-400
                     hover:bg-primary-500'>
-                <MinusIcon className='size-6 select-none touch-none'></MinusIcon>
+                <MinusIcon className='size-6'></MinusIcon>
             </button>
 
             <button tabIndex={-1}
@@ -73,9 +73,9 @@ export default function PriceInput({ value, onPriceChange }: PriceInputProps) {
                 onPointerDown={handlePlus}
                 onPointerUp={stopInterval}
                 onPointerLeave={stopInterval}
-                className='p-2 bg-primary-600 select-none touch-none
+                className='p-2 bg-primary-600
                     hover:bg-primary-700'>
-                <PlusIcon className='size-6 select-none touch-none'></PlusIcon>
+                <PlusIcon className='size-6'></PlusIcon>
             </button>
         </div>
     )
