@@ -12,6 +12,12 @@ export default function Home() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  // 禁用右鍵及觸控裝置長按選取menu
+  window.addEventListener('contextmenu', (event) => {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  });
+
   return (
     <div className="">
       {/* 設定按鈕 */}
