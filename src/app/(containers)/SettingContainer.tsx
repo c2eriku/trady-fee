@@ -5,6 +5,7 @@ import { brokerageMap, brokeragesIconicSelectOptions } from "../(models)/brokera
 import { SettingContext } from "../(states)/SettingState";
 import { ChevronDoubleUpIcon } from "@heroicons/react/16/solid";
 import ToggleSwitch from "../(components)/ToggleSwitch";
+import Overlay from "../(components)/Overlay";
 
 interface SettingContainerProps {
     isSettingContainerOpen: boolean;
@@ -26,81 +27,73 @@ export default function SettingContainer({ isSettingContainerOpen, setIsSettingC
         <>
             <AnimatePresence>
                 {isSettingContainerOpen && (
-                    <motion.div
-                        className="fixed inset-0 w-screen h-screen bg-black z-30"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.5 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
-                        onClick={() => setIsSettingContainerOpen(false)}
-                    />
-                )}
-            </AnimatePresence>
-
-            <AnimatePresence>
-                {isSettingContainerOpen && (
-                    <motion.div
-                        ref={containerRef}
-                        className={`${className} 
+                    <>
+                        <Overlay onClose={() => setIsSettingContainerOpen(false)}></Overlay>
+                        
+                        <motion.div
+                            ref={containerRef}
+                            className={`${className} 
                         fixed w-full px-1 bg-black rounded-lg overflow-hidden bg-clip-content z-30`}
-                        initial="closed"
-                        animate="open"
-                        exit="closed"
-                        variants={variants}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                    >
-                        <div className="px-4 pt-6 pb-2 border border-primary-400 border-t-0">
-                            <h2 className="mb-4 text-center font-bold text-xl">偏好設定</h2>
-                            <div className="grid grid-cols-2 gap-y-2">
-                                <label className="flex items-center">券商</label>
-                                <IconicSelect
-                                    options={brokeragesIconicSelectOptions}
-                                    defaultValue={setting.state.brokerage.id}
-                                    onChange={(value) => {
-                                        const updBrokerage = brokerageMap.get(value!.toString());
-                                        setting.dispatch({ type: "SET_BROKERAGE", payload: updBrokerage });
-                                    }}
-                                />
+                            initial="closed"
+                            animate="open"
+                            exit="closed"
+                            variants={variants}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                        >
+                            <div className="px-4 pt-6 pb-2 border border-primary-400 border-t-0">
+                                <h2 className="mb-4 text-center font-bold text-xl">偏好設定</h2>
+                                <div className="grid grid-cols-2 gap-y-2">
+                                    <label className="flex items-center">券商</label>
+                                    <IconicSelect
+                                        options={brokeragesIconicSelectOptions}
+                                        defaultValue={setting.state.brokerage.id}
+                                        onChange={(value) => {
+                                            const updBrokerage = brokerageMap.get(value!.toString());
+                                            setting.dispatch({ type: "SET_BROKERAGE", payload: updBrokerage });
+                                        }}
+                                    />
 
-                                <label className="flex items-center">手續費折數</label>
-                                <input
-                                    type="number" inputMode="decimal"
-                                    value={setting.state.feeDiscountRate}
-                                    onChange={(event) => {
-                                        const updValue = event.target.value;
-                                        setting.dispatch({ type: "SET_FEE_DISCOUNT_RATE", payload: Number(updValue) });
-                                    }}
-                                    disabled={setting.state.brokerage.id !== 'general'}
-                                    className="min-h-8 py-1 rounded disabled:text-foreground disabled:p-0 disabled:bg-black"
-                                />
+                                    <label className="flex items-center">手續費折數</label>
+                                    <input
+                                        type="number" inputMode="decimal"
+                                        value={setting.state.feeDiscountRate}
+                                        onChange={(event) => {
+                                            const updValue = event.target.value;
+                                            setting.dispatch({ type: "SET_FEE_DISCOUNT_RATE", payload: Number(updValue) });
+                                        }}
+                                        disabled={setting.state.brokerage.id !== 'general'}
+                                        className="min-h-8 py-1 rounded disabled:text-foreground disabled:p-0 disabled:bg-black"
+                                    />
 
-                                <label className="flex items-center">賣價同步買價</label>
-                                <ToggleSwitch
-                                    value={setting.state.syncSellPrice}
-                                    onChange={(value) => {
-                                        setting.dispatch({ type: "SET_SYNC_SELL_PRICE", payload: value });
-                                    }}
-                                />
+                                    <label className="flex items-center">賣價同步買價</label>
+                                    <ToggleSwitch
+                                        value={setting.state.syncSellPrice}
+                                        onChange={(value) => {
+                                            setting.dispatch({ type: "SET_SYNC_SELL_PRICE", payload: value });
+                                        }}
+                                    />
 
-                                <div className="col-span-2 pt-4 flex justify-end gap-2">
-                                    <button
-                                        onClick={() => localStorage.removeItem("preference")}
-                                        className="rounded bg-transparent text-sm underline">
-                                        刪除偏好設定
-                                    </button>
-                                    <button
-                                        onClick={() => setting.setLocalstorage(setting.state)}
-                                        className="rounded bg-transparent text-sm underline">
-                                        儲存偏好設定在下次使用
-                                    </button>
+                                    <div className="col-span-2 pt-4 flex justify-end gap-2">
+                                        <button
+                                            onClick={() => localStorage.removeItem("preference")}
+                                            className="rounded bg-transparent text-sm underline">
+                                            刪除偏好設定
+                                        </button>
+                                        <button
+                                            onClick={() => setting.setLocalstorage(setting.state)}
+                                            className="rounded bg-transparent text-sm underline">
+                                            儲存偏好設定在下次使用
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <button onClick={() => setIsSettingContainerOpen((prev) => !prev)} className="flex justify-center items-center w-full h-4 rounded-b-lg">
-                            <ChevronDoubleUpIcon className="size-4"></ChevronDoubleUpIcon>
-                        </button>
-                    </motion.div>
+                            <button onClick={() => setIsSettingContainerOpen((prev) => !prev)} className="flex justify-center items-center w-full h-4 rounded-b-lg">
+                                <ChevronDoubleUpIcon className="size-4"></ChevronDoubleUpIcon>
+                            </button>
+                        </motion.div>
+
+                    </>
                 )}
             </AnimatePresence>
         </>

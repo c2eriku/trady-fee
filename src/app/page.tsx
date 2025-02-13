@@ -34,15 +34,21 @@ export default function Home() {
         {/* 標題 */}
         <h1>
           <svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg" className="w-full">
-            <g transform="translate(140, 80)">
-              <text fontFamily="Arial, sans-serif" fontSize="45" fontWeight="bold" fill="white">
+            <g transform="translate(0, 80)">
+              <text fontFamily="Monoton" fontSize="45" fill="white">
                 <tspan>Tradi</tspan>
               </text>
             </g>
 
-            <g transform="translate(250, 80)">
-              <text fontFamily="Arial, sans-serif" fontSize="45" fontWeight="300" fill="white">
+            <g transform="translate(180, 80)">
+              <text fontFamily="Monoton" fontSize="45" fill="white">
                 <tspan>Fee</tspan>
+              </text>
+            </g>
+
+            <g transform="translate(0, 100)">
+              <text fontFamily="Zen Antique Soft" fontSize="20" fill="white">
+                <tspan>台灣股市交易費用計算機</tspan>
               </text>
             </g>
           </svg>

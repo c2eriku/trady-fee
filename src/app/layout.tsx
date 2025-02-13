@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Monoton, Zen_Antique_Soft } from "next/font/google";
 import "./globals.css";
 import SettingProvider from "./(states)/SettingState";
 
@@ -10,6 +10,18 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const monoton = Monoton({
+  weight: "400", 
+  variable: "--font-monoton",
+  subsets: ["latin"],
+});
+
+const zenAntiqueSoft = Zen_Antique_Soft({
+  weight: "400", 
+  variable: "--font-zen-antique-soft",
   subsets: ["latin"],
 });
 
@@ -25,7 +37,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} 
+      ${monoton.variable} ${zenAntiqueSoft.variable} antialiased`}>
         <SettingProvider>
           <div>
             {children}
