@@ -8,6 +8,7 @@ export default function Home() {
   const [isSettingContainerOpen, setIsSettingContainerOpen] = useState(false);
 
   function handleSettingClick() {
+    setIsSettingContainerOpen((prev) => !prev);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
