@@ -2,32 +2,14 @@
 import { Cog6ToothIcon } from "@heroicons/react/24/solid";
 import Calculator from "./(containers)/Calculator";
 import SettingContainer from "./(containers)/SettingContainer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Home() {
-  const [isClient, setIsClient] = useState(false);
   const [isSettingContainerOpen, setIsSettingContainerOpen] = useState(false);
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
   function handleSettingClick() {
-    if (!isClient) return;
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
-
-  useEffect(() => {
-    if (!isClient) return;
-
-    function disableContextMenu(event: MouseEvent) {
-      event.preventDefault();
-      event.stopImmediatePropagation();
-    }
-
-    window.addEventListener("contextmenu", disableContextMenu);
-    return () => window.removeEventListener("contextmenu", disableContextMenu);
-  }, [isClient]);
 
   return (
     <div className="">
