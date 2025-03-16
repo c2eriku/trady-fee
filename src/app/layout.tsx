@@ -29,6 +29,9 @@ export const metadata: Metadata = {
   title: "Tradi-Fee - stock trading fee calculator",
   description: "台灣股市交易費用計算機",
   // description: "Taiwan stock trading fee calculator",
+  verification: {
+    google: "LsS-FX9EimuTmHnP6RB_tJM1N3HoiMVQ-dL7Vhr_5ZE"
+  },
 };
 
 export default function RootLayout({
