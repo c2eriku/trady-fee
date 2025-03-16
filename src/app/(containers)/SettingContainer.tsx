@@ -6,9 +6,8 @@ import {
   brokeragesIconicSelectOptions,
 } from "../(models)/brokeragesList";
 import { SettingContext } from "../(states)/SettingState";
-import { CheckIcon, ChevronDoubleUpIcon, Cog6ToothIcon } from "@heroicons/react/16/solid";
+import { Cog6ToothIcon } from "@heroicons/react/16/solid";
 import ToggleSwitch from "../(components)/ToggleSwitch";
-import Overlay from "../(components)/Overlay";
 
 interface SettingContainerProps {
   isSettingContainerOpen: boolean;
@@ -19,7 +18,6 @@ interface SettingContainerProps {
 export default function SettingContainer({
   isSettingContainerOpen,
   setIsSettingContainerOpen,
-  className = "",
 }: SettingContainerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const setting = useContext(SettingContext);
@@ -29,14 +27,14 @@ export default function SettingContainer({
   }
 
   return (
-    <div className="fixed top-4 right-4 flex flex-col items-end z-50">
+    <div className="fixed top-3 right-2 flex flex-col items-end z-50">
       <div className="ml-auto">
         <button
           onClick={handleSettingClick}
-          className="outline outline-2 p-1 bg-primary-400 rounded z-50"
+          className="p-1 bg-primary-400 rounded-2xl z-50"
         >
           <Cog6ToothIcon
-            className={`size-7 transition-transform ${
+            className={`size-8 transition-transform ${
               isSettingContainerOpen ? "rotate-[-150deg]" : "rotate-0"
             }`}
           />
@@ -60,7 +58,7 @@ export default function SettingContainer({
                                 <ChevronDoubleUpIcon className="size-4"></ChevronDoubleUpIcon>
                             </button> */}
 
-                <div className="p-2 h-full border border-primary rounded-2xl bg-black">
+                <div className="p-2 h-full rounded-2xl bg-background-600 shadow shadow-background-50">
                   <div className="bg-background rounded-xl p-2 shadow-md">
                     <h2 className="mb-4 text-center font-bold text-xl">
                       偏好設定
@@ -189,10 +187,10 @@ function PreferencePanel() {
   const [showResult, setShowResult] = useState(false);
   const setting = useContext(SettingContext);
 
-  function delayHideResult(){
+  function delayHideResult() {
     setShowResult(true);
     setTimeout(() => {
-        setShowResult(false);
+      setShowResult(false);
     }, 3000);
   }
 

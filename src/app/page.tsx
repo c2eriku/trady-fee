@@ -20,7 +20,7 @@ export default function Home() {
 
       <div className="h-[100dvh] min-h-[100svh] w-screen bg-background
         flex flex-col justify-center items-center gap-2 px-4 transition-all
-        sm:w-2/5 sm:m-auto ">
+        sm:w-2/5 sm:m-auto md:w-3/5">
         {/* 標題 */}
         <div className="flex w-full">
           <h1 className="w-48 text-left">

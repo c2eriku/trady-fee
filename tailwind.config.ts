@@ -9,7 +9,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
+        background: {
+          DEFAULT: "var(--background)",
+          50: '#8C8789',
+          100: '#7A7375',
+          200: '#685F61',
+          300: '#564B4D',
+          400: '#443738',
+          500: '#2F2C2E', // 主色
+          600: '#1C1A1B',
+          700: '#0A0A0A',
+          800: '#050505',
+          900: '#000000',
+        },
         foreground: "var(--foreground)",
         primary: {
           DEFAULT: "var(--primary)",

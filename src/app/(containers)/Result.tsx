@@ -65,7 +65,7 @@ export default function Result({ buyPrice: iBuyPrice, sellPrice: iSellPrice, tra
                     </div>
                 </div>
 
-                <div className="px-2 grid grid-cols-2 grid-cols-[40%_60%] mt-1 p-1 bg-primary-600 bg-opacity-20 rounded
+                <div className="px-2 grid grid-cols-2 grid-cols-[40%_60%] mt-1 p-1 bg-primary-700 bg-opacity-20 rounded
                  md:w-1/2 md:grid-cols-1">
                     <span>淨利／損</span>
                     <AcctSpan className="text-right">{netProfit}</AcctSpan>

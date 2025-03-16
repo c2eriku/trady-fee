@@ -27,7 +27,8 @@ const zenAntiqueSoft = Zen_Antique_Soft({
 
 export const metadata: Metadata = {
   title: "Tradi-Fee - stock trading fee calculator",
-  description: "Taiwan stock trading fee calculator",
+  description: "台灣股市交易費用計算機",
+  // description: "Taiwan stock trading fee calculator",
 };
 
 export default function RootLayout({
@@ -36,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="zh-TW">
       <body className={`${geistSans.variable} ${geistMono.variable} 
       ${monoton.variable} ${zenAntiqueSoft.variable} antialiased`}>
         <SettingProvider>
