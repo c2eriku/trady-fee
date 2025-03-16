@@ -16,14 +16,14 @@ const general: Brokerage = {
 
 const fubon: Brokerage = {
   id: "fubon",
-  name: "富邦",
+  name: "富邦證券",
   feeDiscountRate: 0.3,
   iconUrl: url2,
 };
 
 const cathay: Brokerage = {
   id: "cathay",
-  name: "國泰",
+  name: "國泰證券",
   feeDiscountRate: 0.28,
   iconUrl: url,
 };
