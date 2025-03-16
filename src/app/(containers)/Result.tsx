@@ -39,9 +39,9 @@ export default function Result({ buyPrice: iBuyPrice, sellPrice: iSellPrice, tra
     const InfoButton = ({ onClick }: { onClick: () => void }) => {
         return (
             <button onClick={onClick}
-                className="flex items-center p-1 border border-primary rounded bg-transparent text-primary-400">
+                className="flex items-center p-1 border border-primary rounded bg-transparent text-primary-400 cursor-pointer">
                 <InformationCircleIcon className="size-6 mr-px" />
-                <label className="px-p">更多訊息</label>
+                <span className="px-p">更多訊息</span>
             </button>
         );
     }
