@@ -83,10 +83,23 @@ interface IconicOptionProps {
 }
 
 function IconicOption({ label, iconUrl, onClick }: IconicOptionProps) {
+
+    function OptionIcon() {
+        if (iconUrl) {
+            return <img
+                src={iconUrl}
+                alt={label}
+                className="w-6 h-6" />
+        } else {
+            return <div className="w-6 h-6 bg-gray-400"></div>
+        }
+    }
+
+
     return (
         <button onClick={onClick}
             className="flex items-center w-full bg-white rounded bg-opacity-20 px-2 py-1 hover:bg-opacity-30">
-            <img src={iconUrl} alt={label} className="w-6 h-6" />
+            <OptionIcon></OptionIcon>
             <label className="ml-2 cursor-pointer">{label}</label>
         </button>
     );

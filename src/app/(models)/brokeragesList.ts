@@ -11,7 +11,7 @@ const general: Brokerage = {
   id: "general",
   name: "自定義",
   feeDiscountRate: 1,
-  iconUrl: 'https://play-lh.googleusercontent.com/IXnzZTbO6XFYwVVX-R7jXBQviB4NMBEngCPU1cDBWtBf9Spcby1Uy0PQXhJ7NcuZog=w480-h960-rw',
+  iconUrl: '',
 };
 
 const fubon: Brokerage = {
