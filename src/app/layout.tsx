@@ -44,6 +44,7 @@ export default function RootLayout({
     <html lang="zh-TW">
       <body className={`${geistSans.variable} ${geistMono.variable} 
       ${monoton.variable} ${zenAntiqueSoft.variable} antialiased h-[100dvh] min-h-[100svh]`}>
+        
         <SettingProvider>
           <div className="h-[95%]">
             {children}
