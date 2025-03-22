@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Monoton, Zen_Antique_Soft } from "next/font/google";
 import "./globals.css";
 import SettingProvider from "./(states)/SettingState";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { FooterWrapper } from "./(containers)/FooterWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,13 +16,13 @@ const geistMono = Geist_Mono({
 });
 
 const monoton = Monoton({
-  weight: "400", 
+  weight: "400",
   variable: "--font-monoton",
   subsets: ["latin"],
 });
 
 const zenAntiqueSoft = Zen_Antique_Soft({
-  weight: "400", 
+  weight: "400",
   variable: "--font-zen-antique-soft",
   subsets: ["latin"],
 });
@@ -43,12 +44,16 @@ export default function RootLayout({
   return (
     <html lang="zh-TW">
       <body className={`${geistSans.variable} ${geistMono.variable} 
-      ${monoton.variable} ${zenAntiqueSoft.variable} antialiased`}>
+      ${monoton.variable} ${zenAntiqueSoft.variable} antialiased h-[100dvh] min-h-[100svh]`}>
         <SettingProvider>
-          <div>
+          <div className="h-[95%]">
             {children}
           </div>
         </SettingProvider>
+
+        <footer className="flex items-center justify-center h-[5%] text-background-50 text-sm">
+          <FooterWrapper></FooterWrapper>
+        </footer>
       </body>
       <GoogleAnalytics gaId="G-SMPS08R910"></GoogleAnalytics>
     </html>

@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 export interface IconicSelectOption {
     value: string | number;
@@ -15,7 +15,6 @@ export interface IconicSelectProps {
 
 export function IconicSelect({ options, defaultValue, onChange }: IconicSelectProps) {
     const defaultOption = options.find(option => option.value === defaultValue);
-    const [value, setValue] = useState(defaultOption?.value);
     const [label, setLabel] = useState(defaultOption?.label);
     const [iconUrl, setIconUrl] = useState(defaultOption?.iconUrl);
 
@@ -44,7 +43,6 @@ export function IconicSelect({ options, defaultValue, onChange }: IconicSelectPr
     function handleSelect(value: string | number) {
         onChange(value);
         const updatedOption = options.find(option => option.value === value);
-        setValue(value);
         setLabel(updatedOption?.label);
         setIconUrl(updatedOption?.iconUrl);
 

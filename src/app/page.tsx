@@ -1,7 +1,6 @@
 'use client';
-import { Cog6ToothIcon } from "@heroicons/react/24/solid";
 import Calculator from "./(containers)/Calculator";
-import SettingContainer from "./(containers)/SettingContainer";
+import SettingPanel from "./(containers)/SettingPanel";
 import { useState } from "react";
 import LogoIcon from "./(components)/LogoIcon";
 
@@ -13,7 +12,7 @@ export default function Home() {
       {/* 設定按鈕 */}
 
       {/* 偏好設定面板 */}
-      <SettingContainer
+      <SettingPanel
         isSettingContainerOpen={isSettingContainerOpen}
         setIsSettingContainerOpen={setIsSettingContainerOpen}
       />

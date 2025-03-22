@@ -1,8 +1,6 @@
-import { XMarkIcon } from "@heroicons/react/16/solid";
 import { TradeDirectionEnum } from "../(enums)/TradingActionEnum";
-import { AnimatePresence, motion } from "framer-motion";
 import AcctSpan from "../(components)/AcctSpan";
-import Overlay from "../(components)/Overlay";
+import { Dialog } from "../(components)/Dialog";
 
 
 interface DetailDialogProps {
@@ -29,57 +27,39 @@ export default function DetailDialog({
     brokerageFee,
     taxFee }: DetailDialogProps) {
     return (
-        <>
-            <AnimatePresence>
-                {isOpen && (<>
-                    <Overlay onClose={onClose}></Overlay>
+        <Dialog isOpen={isOpen} onClose={onClose}>
 
-                    <motion.div
-                        initial={{ rotateY: 90, opacity: 0 }}
-                        animate={{ rotateY: 0, opacity: 1 }}
-                        exit={{ rotateY: 90, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
-                        className="fixed inset-0 m-auto w-64 h-64 rounded-lg shadow-lg z-50"
-                    >
+            <div className="flex justify-center mb-2">
+                <h3>{direction === TradeDirectionEnum.Buy ? '買進' : '賣出'} 費用明細 </h3>
+            </div>
 
-                        <div className="relative min-h-72 bg-background border border-primary rounded p-4">
-                            <button className="absolute top-0 right-0 rounded-bl-md hover:bg-primary-600" onClick={onClose}>
-                                <XMarkIcon className="size-8"></XMarkIcon>
-                            </button>
+            <div className="grid grid-cols-2">
+                <DirectionDetail {...{ direction, buyPrice, sellPrice, totalLotAmount }} />
 
-                            <div className="flex justify-center mb-2">
-                                <h3>{direction === TradeDirectionEnum.Buy ? '買進' : '賣出'} 費用明細 </h3>
-                            </div>
+                <label className="mr-2">證券手續費</label>
+                <AcctSpan
+                    showColor={true}
+                    className="text-right pr-4">
+                    {brokerageFee}
+                </AcctSpan>
 
-                            <div className="grid grid-cols-2">
-                                <DirectionDetail {...{ direction, buyPrice, sellPrice, totalLotAmount }} />
+                {direction === TradeDirectionEnum.Sell && (
+                    <>
+                        <label className="mr-2">證券交易稅</label>
+                        <AcctSpan className="text-right pr-4">{taxFee}</AcctSpan>
+                    </>
+                )}
+            </div>
 
-                                <label className="mr-2">證券手續費</label>
-                                <AcctSpan
-                                    showColor={true}
-                                    className="text-right pr-4">
-                                    {brokerageFee}
-                                </AcctSpan>
+            <div className="grid grid-cols-2 bottom-0">
+                <label className="mr-2">=</label>
+                <AcctSpan className="text-right pr-4">{finalResult}</AcctSpan>
+            </div>
 
-                                {direction === TradeDirectionEnum.Sell && (
-                                    <>
-                                        <label className="mr-2">證券交易稅</label>
-                                        <AcctSpan className="text-right pr-4">{taxFee}</AcctSpan>
-                                    </>
-                                )}
-                            </div>
-
-                            <div className="grid grid-cols-2 bottom-0">
-                                <label className="mr-2">=</label>
-                                <AcctSpan className="text-right pr-4">{finalResult}</AcctSpan>
-                            </div>
-                        </div>
-                    </motion.div>
-                </>)}
-            </AnimatePresence>
-        </>
+        </Dialog>
     )
 }
+
 
 function DirectionDetail({
     direction,

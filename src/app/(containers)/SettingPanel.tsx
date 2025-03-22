@@ -15,7 +15,7 @@ interface SettingContainerProps {
   className?: string;
 }
 
-export default function SettingContainer({
+export default function SettingPanel({
   isSettingContainerOpen,
   setIsSettingContainerOpen,
 }: SettingContainerProps) {
@@ -92,7 +92,7 @@ export default function SettingContainer({
                           });
                         }}
                         disabled={setting.state.brokerage.id !== "general"}
-                        className="min-h-8 py-1 rounded disabled:text-foreground disabled:p-0 disabled:bg-black"
+                        className="min-h-8 py-1 rounded disabled:text-foreground disabled:bg-black"
                       />
 
                       <label className="flex items-center">賣價同步買價</label>
