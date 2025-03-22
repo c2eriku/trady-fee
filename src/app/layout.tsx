@@ -28,12 +28,11 @@ const zenAntiqueSoft = Zen_Antique_Soft({
 });
 
 export const metadata: Metadata = {
-  title: "Tradi-Fee - stock trading fee calculator",
-  description: "台灣股市交易費用計算機",
-  // description: "Taiwan stock trading fee calculator",
-  verification: {
-    google: "LsS-FX9EimuTmHnP6RB_tJM1N3HoiMVQ-dL7Vhr_5ZE"
-  },
+  title: "TradyFee - 台灣股市交易費用計算機",
+  description: "台灣股市交易費用計算機, Taiwan stock trading fee calculator",
+  // verification: {
+  //   google: ""
+  // },
 };
 
 export default function RootLayout({
@@ -51,7 +50,7 @@ export default function RootLayout({
           </div>
         </SettingProvider>
 
-        <footer className="flex items-center justify-center h-[5%] text-background-50 text-sm">
+        <footer className="flex items-center justify-center h-[5%] text-background-50 text-xs">
           <FooterWrapper></FooterWrapper>
         </footer>
       </body>

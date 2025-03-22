@@ -2,13 +2,7 @@ export default function LogoIcon() {
     return <svg viewBox="0 0 200 70" xmlns="http://www.w3.org/2000/svg" className="w-full">
         <g transform="translate(0, 40)">
             <text fontFamily="Monoton" fontSize="32" fill="white">
-                <tspan>Tradi</tspan>
-            </text>
-        </g>
-
-        <g transform="translate(120, 40)">
-            <text fontFamily="Monoton" fontSize="32" fill="white">
-                <tspan>Fee</tspan>
+                <tspan>Trady Fee</tspan>
             </text>
         </g>
 

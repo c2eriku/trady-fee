@@ -9,7 +9,6 @@ export default function Home() {
 
   return (
     <div className="">
-      {/* 設定按鈕 */}
 
       {/* 偏好設定面板 */}
       <SettingPanel
@@ -22,7 +21,7 @@ export default function Home() {
         sm:w-2/5 sm:m-auto md:w-3/5">
         {/* 標題 */}
         <div className="flex w-full">
-          <h1 className="w-48 text-left">
+          <h1 className="w-2/5 text-left">
             <LogoIcon></LogoIcon>
           </h1>
         </div>
