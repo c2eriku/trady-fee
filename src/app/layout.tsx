@@ -30,9 +30,9 @@ const zenAntiqueSoft = Zen_Antique_Soft({
 export const metadata: Metadata = {
   title: "TradyFee - 台灣股市交易費用計算機",
   description: "台灣股市交易費用計算機, Taiwan stock trading fee calculator",
-  // verification: {
-  //   google: ""
-  // },
+  verification: {
+    google: "LsS-FX9EimuTmHnP6RB_tJM1N3HoiMVQ-dL7Vhr_5ZE"
+  },
 };
 
 export default function RootLayout({
@@ -42,6 +42,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-TW" className="h-svh">
+      <head>
+        <GoogleAnalytics gaId="G-SMPS08R910"></GoogleAnalytics>
+      </head>
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${monoton.variable} ${zenAntiqueSoft.variable} 
         antialiased h-full flex flex-col`}>
@@ -55,8 +59,6 @@ export default function RootLayout({
         <footer className="shrink pb-2 text-background-50 text-xs">
           <FooterWrapper></FooterWrapper>
         </footer>
-
-        <GoogleAnalytics gaId="G-SMPS08R910"></GoogleAnalytics>
       </body>
     </html>
   );
