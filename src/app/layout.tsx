@@ -41,21 +41,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-TW">
-      <body className={`${geistSans.variable} ${geistMono.variable} 
-      ${monoton.variable} ${zenAntiqueSoft.variable} antialiased h-[100dvh] min-h-[100svh]`}>
-        
-        <SettingProvider>
-          <div className="h-[95%]">
-            {children}
-          </div>
-        </SettingProvider>
+    <html lang="zh-TW" className="h-svh">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${monoton.variable} ${zenAntiqueSoft.variable} 
+        antialiased h-full flex flex-col`}>
 
-        <footer className="flex items-center justify-center h-[5%] text-background-50 text-xs">
+        <main className="grow overflow-hidden">
+          <SettingProvider>
+            {children}
+          </SettingProvider>
+        </main>
+
+        <footer className="shrink pb-2 text-background-50 text-xs">
           <FooterWrapper></FooterWrapper>
         </footer>
+
+        <GoogleAnalytics gaId="G-SMPS08R910"></GoogleAnalytics>
       </body>
-      <GoogleAnalytics gaId="G-SMPS08R910"></GoogleAnalytics>
     </html>
   );
 }

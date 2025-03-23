@@ -8,8 +8,7 @@ export default function Home() {
   const [isSettingContainerOpen, setIsSettingContainerOpen] = useState(false);
 
   return (
-    <div className="">
-
+    <>
       {/* 偏好設定面板 */}
       <SettingPanel
         isSettingContainerOpen={isSettingContainerOpen}
@@ -30,6 +29,6 @@ export default function Home() {
           <Calculator />
         </div>
       </div>
-    </div>
+    </>
   );
 }
