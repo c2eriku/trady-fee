@@ -28,7 +28,7 @@ const zenAntiqueSoft = Zen_Antique_Soft({
 });
 
 export const metadata: Metadata = {
-  title: "TradyFee - 台灣股市交易費用計算機",
+  title: "TradyFee | 台灣股市交易費用計算機",
   description: "台灣股市交易費用計算機, Taiwan stock trading fee calculator",
   verification: {
     google: "LsS-FX9EimuTmHnP6RB_tJM1N3HoiMVQ-dL7Vhr_5ZE"
