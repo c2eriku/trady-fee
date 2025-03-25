@@ -28,8 +28,15 @@ const zenAntiqueSoft = Zen_Antique_Soft({
 });
 
 export const metadata: Metadata = {
-  title: "TradyFee | 台灣股市交易費用計算機",
-  description: "台灣股市交易費用計算機, Taiwan stock trading fee calculator",
+  title: "TradyFee - 台灣股市交易費用計算機",
+  description: "TradyFee 快速計算台股手續費與證交稅，包含手續費、證交稅與折扣計算，簡單輸入金額，即時獲得計算結果。",
+  applicationName: "TradyFee",
+  keywords: [
+    "台股手續費計算",
+    "股票交易費用計算",
+    "當沖試算",
+    "當沖手續費試算",
+  ],
   verification: {
     google: "LsS-FX9EimuTmHnP6RB_tJM1N3HoiMVQ-dL7Vhr_5ZE"
   },
