@@ -1,0 +1,13 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "twse-proxy",
+	"main": "src/index.ts",
+	"account_id": "6c3c3c5fd0802e33a73bc2fdc9942225",
+	"compatibility_date": "2025-04-06",
+	"compatibility_flags": [],
+	"observability": {
+	  "enabled": true
+	},
+	"routes": [],
+	"logpush": false
+  }
