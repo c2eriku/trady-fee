@@ -16,7 +16,7 @@ export default function StockSearchInput({ updatePrice }: StockSearchInputProps)
     }
 
     async function handleSearch() {
-        const res = await fetch("/api/twse");
+        const res = await fetch("https://twse-proxy.c2eriku.workers.dev");
         const data: any[] = await res.json();
         const targetStock = data.find((el) => el.Code === stockId);
         updatePrice(targetStock.ClosingPrice);
