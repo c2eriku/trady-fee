@@ -10,6 +10,8 @@ import { CaculatorState } from "../(interfaces)/CalculatorState";
 import { LotCategoryEnum } from "../(enums)/LotCategoryEnum";
 import { TradeTypeEnum } from "../(enums)/TradeTypeEnum";
 import { SettingContext, SettingState } from "../(states)/SettingState";
+import StockSearchInput from "../(components)/StockSearchInput";
+import { AnimatePresence, motion } from "framer-motion";
 
 const initialState: CaculatorState = {
     buyPrice: '0',
@@ -51,6 +53,7 @@ function calculatorReducer(state: CaculatorState, action: {
 
 export default function Calculator() {
     const [state, dispatch] = useReducer(calculatorReducer, initialState);
+    const [showSearch, setShowSearch] = useState(false);
     const setting = useContext(SettingContext);
 
     return (
@@ -59,6 +62,27 @@ export default function Calculator() {
             <section className="mb-6">
                 <Result {...state} />
             </section>
+
+            <div>
+                <button
+                    onClick={() => setShowSearch((prev) => !prev)}
+                    className="p-1 px-2 rounded bg-sky-600 hover:bg-sky-700">{showSearch ? '收合股價查詢' : '股價速查'}</button>
+            </div>
+
+            <div>
+                <AnimatePresence>
+                    {showSearch && <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        className=""
+                    >
+                        <StockSearchInput
+                            updatePrice={(value) => dispatch({ type: "SET_BUY_PRICE", payload: value, settingState: setting.state })}></StockSearchInput>
+                    </motion.div>}
+                </AnimatePresence>
+            </div>
 
             <div>
                 <label htmlFor="buyPrice">買進價</label>

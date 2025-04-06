@@ -28,6 +28,7 @@ body {
 
 input {
   color: var(--background);
+  height: 100%;
   padding: 0 6px 0 1rem;
   border-radius: 0;
   outline: none;
