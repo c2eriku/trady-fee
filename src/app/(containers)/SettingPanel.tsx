@@ -92,7 +92,7 @@ export default function SettingPanel({
                           });
                         }}
                         disabled={setting.state.brokerage.id !== "general"}
-                        className="min-h-8 py-1 rounded disabled:text-foreground disabled:bg-black"
+                        className="min-h-8 py-1 rounded disabled:text-foreground disabled:bg-transparent"
                       />
 
                       <label className="flex items-center">賣價同步買價</label>
