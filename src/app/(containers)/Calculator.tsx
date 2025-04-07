@@ -12,6 +12,7 @@ import { TradeTypeEnum } from "../(enums)/TradeTypeEnum";
 import { SettingContext, SettingState } from "../(states)/SettingState";
 import StockSearchInput from "../(components)/StockSearchInput";
 import { AnimatePresence, motion } from "framer-motion";
+import { MinusIcon, PlusIcon } from "@heroicons/react/16/solid";
 
 const initialState: CaculatorState = {
     buyPrice: '0',
@@ -66,7 +67,10 @@ export default function Calculator() {
             <div>
                 <button
                     onClick={() => setShowSearch((prev) => !prev)}
-                    className="p-1 px-2 rounded bg-sky-600 hover:bg-sky-700">{showSearch ? '收合股價查詢' : '股價速查'}</button>
+                    className="flex items-center p-1 px-2 rounded bg-sky-600 hover:bg-sky-700">
+                    {showSearch ? <MinusIcon className="inline size-4"></MinusIcon> : <PlusIcon className="inline size-4"></PlusIcon>}
+                    股價速查
+                </button>
             </div>
 
             <div>
@@ -75,8 +79,11 @@ export default function Calculator() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
-                        className=""
+                        transition={{
+                            height: { duration: 0.3, ease: "easeOut" },
+                            opacity: { duration: 0 }
+                        }}
+                        className="translate "
                     >
                         <StockSearchInput
                             updatePrice={(value) => dispatch({ type: "SET_BUY_PRICE", payload: value, settingState: setting.state })}></StockSearchInput>

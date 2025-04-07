@@ -28,10 +28,6 @@ const zenAntiqueSoft = Zen_Antique_Soft({
 });
 
 export const metadata: Metadata = {
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-  },
   title: "TradyFee - 台灣股市交易費用計算機",
   description: "TradyFee 快速計算台股手續費與證交稅，包含手續費、證交稅與折扣計算，簡單輸入金額，即時獲得計算結果。",
   applicationName: "TradyFee",

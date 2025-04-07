@@ -40,8 +40,8 @@ export default function PriceInput({ value, onPriceChange }: PriceInputProps) {
             const step = getStockInterval(price);
             let newPrice = new Decimal(price);
             newPrice = isIncrement ? newPrice.add(step) : newPrice.minus(step);
-            insideValue = newPrice.toString();
-            onPriceChange(newPrice.toString());
+            insideValue = newPrice.toNumber().toFixed(2);
+            onPriceChange(insideValue);
         } else {
             onPriceChange('0');
         }
