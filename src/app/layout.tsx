@@ -38,6 +38,7 @@ export const metadata: Metadata = {
   keywords: [
     "台股手續費計算",
     "股票交易費用計算",
+    "股票當沖計算機",
     "當沖試算",
     "當沖手續費試算",
   ],
