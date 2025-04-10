@@ -37,16 +37,10 @@ export default function StockSearchInput({ updatePrice }: StockSearchInputProps)
 
         setProcessing(true);
         try {
-            const res = await fetch("https://twse-proxy.c2eriku.workers.dev/api/all");
-            const data: any[] = await res.json();
-            const targetStock = data.find((el) => el.Code === stockId);
-
-            if (!targetStock) {
-                setError("找不到該股票代碼");
-                return;
-            }
-
-            updatePrice(targetStock.ClosingPrice);
+            const res = await fetch(`https://twse-proxy.c2eriku.workers.dev/?stockId=${stockId}`);
+            const data: any = await res.json();
+            const zPrice = data.msgArray[0].z;
+            updatePrice(zPrice);
         } catch (err) {
             setError("資料讀取失敗");
         } finally {
