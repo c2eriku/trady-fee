@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
   },
-  title: "台灣股市交易費用試算機 | TradyFee",
+  title: "台灣股市交易費用計算機 | TradyFee",
   description: "TradyFee股票交易費用計算工具，支援手續費、證交稅、當沖交易等費用試算，並可根據不同券商折扣自訂費率。只需輸入交易金額，即可即時試算每筆買賣成本，幫助投資人快速了解淨損益與交易門檻，適用現股與當沖族群。",
   applicationName: "TradyFee",
   keywords: [
