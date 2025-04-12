@@ -1,4 +1,4 @@
-import { NextConfig } from "next";
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
@@ -6,13 +6,11 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "play-lh.googleusercontent.com",
-        port: "",
         pathname: "/**",
       },
       {
         protocol: "https",
         hostname: "openapi.twse.com.tw",
-        port: "",
         pathname: "/**",
       },
     ],
