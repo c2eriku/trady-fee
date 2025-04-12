@@ -37,7 +37,8 @@ export default function StockSearchInput({ updatePrice }: StockSearchInputProps)
 
         setProcessing(true);
         try {
-            const res = await fetch(`https://twse-proxy.c2eriku.workers.dev/?stockId=${stockId}`);
+            // const res = await fetch(`https://twse-proxy.c2eriku.workers.dev/?stockId=${stockId}`);
+            const res = await fetch(`/api/stock?stockId=${stockId}`);
             const data: any = await res.json();
             const zPrice: number = Number(data.msgArray[0].z as string);
             updatePrice(zPrice.toFixed(2));
