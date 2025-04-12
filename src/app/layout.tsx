@@ -29,23 +29,28 @@ const zenAntiqueSoft = Zen_Antique_Soft({
 
 export const metadata: Metadata = {
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
+    icon: "/trady-fee/favicon.ico",
+    apple: "/trady-fee/favicon.ico",
   },
-  title: "TradyFee - 台灣股市交易費用計算機",
-  description: "TradyFee 快速計算台股手續費與證交稅，包含手續費、證交稅與折扣計算，簡單輸入金額，即時獲得計算結果。",
+  title: "台灣股市交易費用計算機 | TradyFee",
+  description: "TradyFee股票交易費用計算工具，支援手續費、證交稅、當沖交易等費用試算，並可根據不同券商折扣自訂費率。只需輸入交易金額，即可即時試算每筆買賣成本，幫助投資人快速了解淨損益與交易門檻，適用現股與當沖族群。",
   applicationName: "TradyFee",
   keywords: [
+    "TradyFee",
     "台股手續費計算",
     "股票交易費用計算",
-    "股票當沖計算機",
-    "當沖試算",
-    "當沖手續費試算",
+    "股票手續費試算",
+    "台灣股票計算機",
+    "當沖交易計算",
+    "股票當沖費用",
+    "股市交易成本計算",
+    "台灣股市投資工具"
   ],
   verification: {
-    google: "LsS-FX9EimuTmHnP6RB_tJM1N3HoiMVQ-dL7Vhr_5ZE"
+    google: "LsS-FX9EimuTmHnP6RB_tJM1N3HoiMVQ-dL7Vhr_5ZE",
   },
 };
+
 
 export default function RootLayout({
   children,

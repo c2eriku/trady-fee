@@ -31,6 +31,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Set IS_GITHUB_PAGES
+        run: echo "IS_GITHUB_PAGES=true" >> $GITHUB_ENV
       - name: Detect package manager
         id: detect-package-manager
         run: |

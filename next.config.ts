@@ -1,12 +1,6 @@
-import type { NextConfig } from "next";
-
-const isProd = process.env.NODE_ENV === "production";
+import { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  basePath: isProd ? "/tradyfee" : "",
-  assetPrefix: isProd ? "/tradyfee/" : "",
-  output: isProd ? "export" : undefined,
-  trailingSlash: true,
   images: {
     remotePatterns: [
       {
