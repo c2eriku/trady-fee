@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     "台灣股市投資工具"
   ],
   verification: {
-    google: "LsS-FX9EimuTmHnP6RB_tJM1N3HoiMVQ-dL7Vhr_5ZE",
+    google: "h03B2BLFzKpOlppGAcITD8vC213Jz540EtFnHEVdU5E",
   },
 };
 
@@ -60,7 +60,7 @@ export default function RootLayout({
   return (
     <html lang="zh-TW" className="h-svh">
       <head>
-        <GoogleAnalytics gaId="G-SMPS08R910"></GoogleAnalytics>
+        <GoogleAnalytics gaId="G-7HCHMTZNX1"></GoogleAnalytics>
       </head>
 
       <body
