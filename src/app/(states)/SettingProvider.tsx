@@ -1,6 +1,6 @@
 'use client';
 import { createContext, useReducer } from "react";
-import settingReducer, { getInitialState, SettingState } from "./settingReducer";
+import settingReducer, { initialSettingState, SettingState } from "./settingReducer";
 
 
 
@@ -15,7 +15,7 @@ export const SettingContext = createContext<{
 
 
 export default function SettingProvider({ children }: any) {
-  const [state, dispatch] = useReducer(settingReducer, getInitialState());
+  const [state, dispatch] = useReducer(settingReducer, initialSettingState);
 
   return (
     <SettingContext.Provider value={{ state, dispatch }}>

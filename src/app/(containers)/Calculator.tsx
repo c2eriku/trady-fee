@@ -6,55 +6,15 @@ import { tradeTypeRadioGroup } from "../(models)/tradeTypeRadioGroup";
 import OptionInput from "../(components)/OptionInput";
 import { stockAmount } from "../(models)/stockAmount";
 import Result from "./Result";
-import { CaculatorState } from "../(interfaces)/CalculatorState";
-import { LotCategoryEnum } from "../(enums)/LotCategoryEnum";
-import { TradeTypeEnum } from "../(enums)/TradeTypeEnum";
 import { SettingContext } from "../(states)/SettingProvider";
 import StockSearchInput from "../(components)/StockSearchInput";
 import { AnimatePresence, motion } from "framer-motion";
 import { MinusIcon, PlusIcon } from "@heroicons/react/16/solid";
-import { SettingState } from "../(states)/settingReducer";
-
-const initialState: CaculatorState = {
-    buyPrice: '0',
-    sellPrice: '0',
-    tradeType: TradeTypeEnum.Spot,
-    lotAmount: 1,
-    lotCategory: LotCategoryEnum.Round,
-};
-
-
-function calculatorReducer(state: CaculatorState, action: {
-    type: any;
-    payload: any;
-    settingState?: SettingState
-}) {
-    switch (action.type) {
-        case "SET_BUY_PRICE":
-            if (action.settingState?.syncSellPrice) {
-                return {
-                    ...state,
-                    buyPrice: action.payload,
-                    sellPrice: action.payload
-                };
-            }
-            return { ...state, buyPrice: action.payload };
-        case "SET_SELL_PRICE":
-            return { ...state, sellPrice: action.payload };
-        case "SET_TRADE_TYPE":
-            return { ...state, tradeType: action.payload };
-        case "SET_LOT_AMOUNT":
-            return { ...state, lotAmount: action.payload };
-        case "SET_LOT_CATEGORY":
-            return { ...state, lotCategory: action.payload };
-        default:
-            throw new Error(`Unhandled action type: ${action.type}`);
-    }
-}
+import { calculatorReducer, initCalculatorState } from "../(states)/calculatorReducer";
 
 
 export default function Calculator() {
-    const [state, dispatch] = useReducer(calculatorReducer, initialState);
+    const [state, dispatch] = useReducer(calculatorReducer, initCalculatorState);
     const [showSearch, setShowSearch] = useState(false);
     const setting = useContext(SettingContext);
 

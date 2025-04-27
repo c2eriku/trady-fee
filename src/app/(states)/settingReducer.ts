@@ -7,6 +7,25 @@ export interface SettingState {
   syncSellPrice: boolean;
 }
 
+export const initialSettingState: SettingState = (function () {
+  if (typeof window !== "undefined") {
+    const stored = localStorage.getItem("preference");
+    if (stored) {
+      try {
+        return JSON.parse(stored);
+      } catch (error) {
+        console.error("Failed to parse localStorage:", error);
+      }
+    }
+  }
+
+  return {
+    brokerage: brokerageMap.get("general")!,
+    feeDiscountRate: brokerageMap.get("general")!.feeDiscountRate,
+    syncSellPrice: true,
+  };
+})();
+
 export default function settingReducer(
   state: SettingState,
   action: { type: any; payload: any }
@@ -25,24 +44,4 @@ export default function settingReducer(
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
   }
-}
-
-export function getInitialState(): SettingState {
-  // get user's preference while open
-  if (typeof window !== "undefined") {
-    const stored = localStorage.getItem("preference");
-    if (stored) {
-      try {
-        return JSON.parse(stored);
-      } catch (error) {
-        console.error("Failed to parse localStorage:", error);
-      }
-    }
-  }
-
-  return {
-    brokerage: brokerageMap.get("general")!,
-    feeDiscountRate: brokerageMap.get("general")!.feeDiscountRate,
-    syncSellPrice: true,
-  };
 }
