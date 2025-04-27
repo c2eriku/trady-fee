@@ -1,5 +1,5 @@
-import { Brokerage } from "../(interfaces)/brokerage";
-import { brokerageMap } from "../(models)/brokeragesList";
+import { Brokerage } from "../../(interfaces)/brokerage";
+import { brokerageMap } from "../../(configs)/brokeragesList";
 
 export interface SettingState {
   brokerage: Brokerage;

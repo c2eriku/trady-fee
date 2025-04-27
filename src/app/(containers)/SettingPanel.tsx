@@ -4,11 +4,11 @@ import { IconicSelect } from "../(components)/IconicSelect";
 import {
   brokerageMap,
   brokeragesIconicSelectOptions,
-} from "../(models)/brokeragesList";
+} from "../(configs)/brokeragesList";
 import { Cog6ToothIcon } from "@heroicons/react/16/solid";
 import ToggleSwitch from "../(components)/ToggleSwitch";
-import { SettingState } from "../(states)/settingReducer";
-import { SettingContext } from "../(states)/SettingProvider";
+import { SettingState } from "../(states)/setting/settingReducer";
+import { SettingContext } from "../(states)/setting/SettingProvider";
 
 interface SettingContainerProps {
   isSettingContainerOpen: boolean;

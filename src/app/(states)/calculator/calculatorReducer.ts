@@ -1,6 +1,6 @@
-import { SettingState } from "./settingReducer";
-import { LotCategoryEnum } from "../(enums)/LotCategoryEnum";
-import { TradeTypeEnum } from "../(enums)/TradeTypeEnum";
+import { SettingState } from "../setting/settingReducer";
+import { LotCategoryEnum } from "../../(enums)/LotCategoryEnum";
+import { TradeTypeEnum } from "../../(enums)/TradeTypeEnum";
 
 export interface CaculatorState {
   buyPrice: string;

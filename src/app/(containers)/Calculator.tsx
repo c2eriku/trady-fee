@@ -2,15 +2,15 @@
 import { useContext, useReducer, useState } from "react";
 import PriceInput from "../(components)/PriceInput";
 import StyledRadio from "../(components)/StyledRadio";
-import { tradeTypeRadioGroup } from "../(models)/tradeTypeRadioGroup";
+import { tradeTypeRadioGroup } from "../(configs)/tradeTypeRadioGroup";
 import OptionInput from "../(components)/OptionInput";
-import { stockAmount } from "../(models)/stockAmount";
+import { stockAmount } from "../(configs)/stockAmount";
 import Result from "./Result";
-import { SettingContext } from "../(states)/SettingProvider";
+import { SettingContext } from "../(states)/setting/SettingProvider";
 import StockSearchInput from "../(components)/StockSearchInput";
 import { AnimatePresence, motion } from "framer-motion";
 import { MinusIcon, PlusIcon } from "@heroicons/react/16/solid";
-import { calculatorReducer, initCalculatorState } from "../(states)/calculatorReducer";
+import { calculatorReducer, initCalculatorState } from "../(states)/calculator/calculatorReducer";
 
 
 export default function Calculator() {

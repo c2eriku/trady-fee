@@ -4,7 +4,7 @@ import { LotCategoryEnum } from "../(enums)/LotCategoryEnum";
 import { CaculatorState } from "../(interfaces)/CalculatorState";
 import DetailDialog from "./DetailDialog";
 import { TradeDirectionEnum } from "../(enums)/TradingActionEnum";
-import { SettingContext } from "../(states)/SettingProvider";
+import { SettingContext } from "../(states)/setting/SettingProvider";
 import Decimal from "decimal.js";
 import { InformationCircleIcon } from "@heroicons/react/16/solid";
 import AcctSpan from "../(components)/AcctSpan";
