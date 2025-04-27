@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Monoton, Zen_Antique_Soft } from "next/font/google";
 import "./globals.css";
-import SettingProvider from "./(states)/SettingState";
+import SettingProvider from "./(states)/SettingProvider";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { FooterWrapper } from "./(containers)/FooterWrapper";
 

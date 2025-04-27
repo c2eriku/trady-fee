@@ -9,10 +9,11 @@ import Result from "./Result";
 import { CaculatorState } from "../(interfaces)/CalculatorState";
 import { LotCategoryEnum } from "../(enums)/LotCategoryEnum";
 import { TradeTypeEnum } from "../(enums)/TradeTypeEnum";
-import { SettingContext, SettingState } from "../(states)/SettingState";
+import { SettingContext } from "../(states)/SettingProvider";
 import StockSearchInput from "../(components)/StockSearchInput";
 import { AnimatePresence, motion } from "framer-motion";
 import { MinusIcon, PlusIcon } from "@heroicons/react/16/solid";
+import { SettingState } from "../(states)/settingReducer";
 
 const initialState: CaculatorState = {
     buyPrice: '0',
@@ -57,6 +58,7 @@ export default function Calculator() {
     const [showSearch, setShowSearch] = useState(false);
     const setting = useContext(SettingContext);
 
+
     return (
         <div className="relative flex flex-col gap-1">
 
@@ -64,13 +66,20 @@ export default function Calculator() {
                 <Result {...state} />
             </section>
 
-            <div>
+            <div className="flex gap-2">
                 <button
                     onClick={() => setShowSearch((prev) => !prev)}
                     className="flex items-center p-1 px-2 rounded bg-sky-600 hover:bg-sky-700">
                     {showSearch ? <MinusIcon className="inline size-4"></MinusIcon> : <PlusIcon className="inline size-4"></PlusIcon>}
                     股價速查
                 </button>
+
+                {/* <button
+                    onClick={() => setShowSearch((prev) => !prev)}
+                    className="flex items-center p-1 px-2 rounded bg-amber-600 hover:bg-amber-700">
+                    <BarsArrowUpIcon className="inline size-4"></BarsArrowUpIcon>
+                    算獲利價
+                </button> */}
             </div>
 
             <div>

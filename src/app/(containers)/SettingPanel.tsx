@@ -5,9 +5,10 @@ import {
   brokerageMap,
   brokeragesIconicSelectOptions,
 } from "../(models)/brokeragesList";
-import { SettingContext } from "../(states)/SettingState";
 import { Cog6ToothIcon } from "@heroicons/react/16/solid";
 import ToggleSwitch from "../(components)/ToggleSwitch";
+import { SettingState } from "../(states)/settingReducer";
+import { SettingContext } from "../(states)/SettingProvider";
 
 interface SettingContainerProps {
   isSettingContainerOpen: boolean;
@@ -34,9 +35,8 @@ export default function SettingPanel({
           className="p-1 bg-primary-400 rounded-2xl z-50"
         >
           <Cog6ToothIcon
-            className={`size-8 transition-transform ${
-              isSettingContainerOpen ? "rotate-[-150deg]" : "rotate-0"
-            }`}
+            className={`size-8 transition-transform ${isSettingContainerOpen ? "rotate-[-150deg]" : "rotate-0"
+              }`}
           />
         </button>
       </div>
@@ -187,6 +187,14 @@ function PreferencePanel() {
   const [showResult, setShowResult] = useState(false);
   const setting = useContext(SettingContext);
 
+
+  function setLocalstorage(newValue: SettingState) {
+    if (typeof window !== "undefined") {
+      localStorage.setItem('preference', JSON.stringify(newValue));
+    }
+  };
+
+
   function delayHideResult() {
     setShowResult(true);
     setTimeout(() => {
@@ -199,7 +207,7 @@ function PreferencePanel() {
       <PreferenceButton
         className="bg-emerald-800"
         onClick={() => {
-          setting.setLocalstorage(setting.state);
+          setLocalstorage(setting.state);
           delayHideResult();
         }}
         show={showSave}
