@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
 import { TradeTypeEnum } from "../(enums)/TradeTypeEnum";
 import { LotCategoryEnum } from "../(enums)/LotCategoryEnum";
-import { CaculatorState } from "../(interfaces)/CalculatorState";
 import DetailDialog from "./DetailDialog";
 import { TradeDirectionEnum } from "../(enums)/TradingActionEnum";
 import { SettingContext } from "../(states)/setting/SettingProvider";
 import Decimal from "decimal.js";
 import { InformationCircleIcon } from "@heroicons/react/16/solid";
 import AcctSpan from "../(components)/AcctSpan";
+import { CaculatorState } from "../(states)/calculator/calculatorReducer";
 
 export default function Result({ buyPrice: iBuyPrice, sellPrice: iSellPrice, tradeType, lotAmount, lotCategory }: CaculatorState) {
     const setting = useContext(SettingContext);
