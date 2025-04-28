@@ -7,8 +7,8 @@ import {
 } from "../(configs)/brokeragesList";
 import { Cog6ToothIcon } from "@heroicons/react/16/solid";
 import ToggleSwitch from "../(components)/ToggleSwitch";
-import { SettingState } from "../(states)/setting/settingReducer";
 import { SettingContext } from "../(states)/setting/SettingProvider";
+import { SettingState } from "../(states)/setting/settingState";
 
 interface SettingContainerProps {
   isSettingContainerOpen: boolean;

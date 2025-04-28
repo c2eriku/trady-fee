@@ -1,11 +1,6 @@
 import { Brokerage } from "../../(interfaces)/brokerage";
 import { brokerageMap } from "../../(configs)/brokeragesList";
-
-export interface SettingState {
-  brokerage: Brokerage;
-  feeDiscountRate: number;
-  syncSellPrice: boolean;
-}
+import { SettingState } from "./settingState";
 
 export const initialSettingState: SettingState = (function () {
   if (typeof window !== "undefined") {

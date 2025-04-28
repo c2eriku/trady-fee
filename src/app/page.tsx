@@ -1,6 +1,6 @@
 'use client';
-import Calculator from "./(containers)/Calculator";
-import SettingPanel from "./(containers)/SettingPanel";
+import Calculator from "./(views)/Calculator";
+import SettingPanel from "./(views)/SettingPanel";
 import { useState } from "react";
 import LogoIcon from "./(components)/LogoIcon";
 

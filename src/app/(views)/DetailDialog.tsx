@@ -7,12 +7,12 @@ interface DetailDialogProps {
     isOpen: boolean,
     onClose: () => void,
     direction: TradeDirectionEnum,
-    buyPrice: number,
-    sellPrice: number,
+    buyPrice: string,
+    sellPrice: string,
     totalLotAmount: number,
-    finalResult: number,
-    brokerageFee: number,
-    taxFee: number
+    finalResult: string,
+    brokerageFee: string,
+    taxFee: string
 }
 
 
@@ -68,20 +68,20 @@ function DirectionDetail({
     totalLotAmount
 }: {
     direction: TradeDirectionEnum,
-    buyPrice: number,
-    sellPrice: number,
+    buyPrice: string,
+    sellPrice: string,
     totalLotAmount: number,
 }) {
     if (direction === TradeDirectionEnum.Buy) {
         return (<>
             <label className="mr-2">買進原價</label>
-            <AcctSpan className="text-right pr-4">{buyPrice * totalLotAmount}</AcctSpan>
+            <AcctSpan className="text-right pr-4">{Number(buyPrice) * totalLotAmount}</AcctSpan>
         </>);
 
     } else {
         return (<>
             <label className="mr-2">賣出原價</label>
-            <AcctSpan className="text-right pr-4">{sellPrice * totalLotAmount}</AcctSpan>
+            <AcctSpan className="text-right pr-4">{Number(sellPrice) * totalLotAmount}</AcctSpan>
         </>);
     }
 }

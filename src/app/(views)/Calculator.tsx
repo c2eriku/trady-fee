@@ -4,7 +4,7 @@ import PriceInput from "../(components)/PriceInput";
 import StyledRadio from "../(components)/StyledRadio";
 import { tradeTypeRadioGroup } from "../(configs)/tradeTypeRadioGroup";
 import OptionInput from "../(components)/OptionInput";
-import { stockAmount } from "../(configs)/stockAmount";
+import { stockAmountRadioGroup } from "../(configs)/stockAmountRadioGroup";
 import Result from "./Result";
 import { SettingContext } from "../(states)/setting/SettingProvider";
 import StockSearchInput from "../(components)/StockSearchInput";
@@ -94,7 +94,7 @@ export default function Calculator() {
                     onChange={(value) => dispatch({ type: "SET_LOT_AMOUNT", payload: value })}
                     optionValue={state.lotCategory}
                     onOptionChange={(value) => dispatch({ type: "SET_LOT_CATEGORY", payload: value })}
-                    radioGroup={stockAmount}
+                    radioGroup={stockAmountRadioGroup}
                 />
             </div>
         </div>

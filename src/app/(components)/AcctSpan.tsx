@@ -1,4 +1,3 @@
-import { color } from "framer-motion";
 import React, { PropsWithChildren } from "react";
 
 export interface AcctSpanProps extends React.HTMLAttributes<HTMLSpanElement> {

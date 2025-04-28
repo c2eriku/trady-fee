@@ -1,14 +1,8 @@
-import { SettingState } from "../setting/settingReducer";
 import { LotCategoryEnum } from "../../(enums)/LotCategoryEnum";
 import { TradeTypeEnum } from "../../(enums)/TradeTypeEnum";
+import { SettingState } from "../setting/settingState";
+import { CaculatorState } from "./caculatorState";
 
-export interface CaculatorState {
-  buyPrice: string;
-  sellPrice: string;
-  tradeType: TradeTypeEnum;
-  lotAmount: number;
-  lotCategory: LotCategoryEnum;
-}
 
 export const initCalculatorState: CaculatorState = {
   buyPrice: "0",
