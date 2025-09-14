@@ -1,6 +1,7 @@
 'use client';
 import { createContext, useReducer } from "react";
-import settingReducer, { initialSettingState, SettingState } from "./settingReducer";
+import settingReducer, { initialSettingState } from "./settingReducer";
+import type { SettingState } from "./settingState";
 
 
 
